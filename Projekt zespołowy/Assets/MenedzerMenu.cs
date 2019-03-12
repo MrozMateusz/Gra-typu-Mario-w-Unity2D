@@ -13,7 +13,6 @@ public class MenedzerMenu : MonoBehaviour
     
     public void NowaGra(string Plansza1)
     {
-
         SceneManager.LoadScene(Plansza1);
     }
 
@@ -44,6 +43,7 @@ public class MenedzerMenu : MonoBehaviour
     public void PowrotDoMenu(string Menu)
     {
         SceneManager.LoadScene(Menu);
+        Time.timeScale = 1;
     }
 
     public void Konntynuj()

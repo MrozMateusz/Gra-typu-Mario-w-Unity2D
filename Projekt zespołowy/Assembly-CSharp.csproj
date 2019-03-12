@@ -61,12 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BlokadaGM.cs" />
-    <Compile Include="Assets\BlokadaGmaster.cs" />
     <Compile Include="Assets\component.cs" />
     <Compile Include="Assets\EnemyScript.cs" />
     <Compile Include="Assets\MenedzerMenu.cs" />
     <Compile Include="Assets\move.cs" />
     <Compile Include="Assets\Opcjemenu.cs" />
+    <Compile Include="Assets\Przesuwanie.cs" />
     <Compile Include="Assets\spaw.cs" />
     <Compile Include="Assets\wielkosc.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
