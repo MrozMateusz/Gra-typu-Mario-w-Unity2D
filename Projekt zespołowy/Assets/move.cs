@@ -10,18 +10,23 @@ public class move : MonoBehaviour
     float predkosc = 3;
     float aktualna_wyskosc = 0.0f;
     Scene scena;
+    readonly string naz="Menu";
     // Start is called before the first frame update
     void Start()
     {
         scena = SceneManager.GetActiveScene();
+        
         //  Cont = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (scena.name == "Plansza1")
+
+       if (scena.name == naz)
         {
+            Debug.Log("Zla scena. Poruszanie wylaczone!");
+        }else{
             klaw();
         }
     }
