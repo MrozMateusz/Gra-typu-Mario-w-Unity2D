@@ -10,6 +10,7 @@ TagManager:
   - Start
   - End Stage
   - Fall
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Ziemia
+  - Tlo
   - 
   - 
   - 
@@ -44,6 +45,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Tlo
+    uniqueID: 4176962913
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 3697731803
     locked: 0

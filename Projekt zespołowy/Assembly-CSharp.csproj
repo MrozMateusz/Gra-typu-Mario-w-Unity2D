@@ -60,14 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BlokadaGM.cs" />
     <Compile Include="Assets\component.cs" />
     <Compile Include="Assets\EnemyScript.cs" />
-    <Compile Include="Assets\MenedzerMenu.cs" />
-    <Compile Include="Assets\move.cs" />
-    <Compile Include="Assets\Opcjemenu.cs" />
-    <Compile Include="Assets\Przesuwanie.cs" />
-    <Compile Include="Assets\spaw.cs" />
+    <Compile Include="Assets\Script\BlokadaGM.cs" />
+    <Compile Include="Assets\Script\KameraPodazanie.cs" />
+    <Compile Include="Assets\Script\MenedzerMenu.cs" />
+    <Compile Include="Assets\Script\move.cs" />
+    <Compile Include="Assets\Script\Opcjemenu.cs" />
+    <Compile Include="Assets\Script\Przesuwanie.cs" />
+    <Compile Include="Assets\Script\spaw.cs" />
+    <Compile Include="Assets\Script\zmianaCheckpointa.cs" />
     <Compile Include="Assets\wielkosc.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/unity Inżynierka/Projekt zespołowy/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
