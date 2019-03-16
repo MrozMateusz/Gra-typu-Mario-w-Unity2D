@@ -5,10 +5,13 @@ using UnityEngine;
 public class spaw : MonoBehaviour
 {
     public Vector3 miejsceRespawnu;
+    private GameObject respawnPlace;
 
     void Start()
     {
-        miejsceRespawnu = transform.position;
+        respawnPlace = GameObject.Find("Respawn");
+        miejsceRespawnu = respawnPlace.transform.position;
+        
     }
 
     private void OnTriggerEnter2D(Collider2D Player)
@@ -16,7 +19,6 @@ public class spaw : MonoBehaviour
         if (Player.tag=="Fall")
         {
             transform.position = miejsceRespawnu;
-            Debug.Log("Jest, spadlem");
         }
         if (Player.tag == "Checkpoint")
         {

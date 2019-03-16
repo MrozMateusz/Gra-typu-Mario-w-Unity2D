@@ -24,4 +24,4 @@ public class BlokadaGM : MonoBehaviour
     {
         
     }
-}asdsa
+}

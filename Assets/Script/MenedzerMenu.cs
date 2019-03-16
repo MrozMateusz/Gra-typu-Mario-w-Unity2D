@@ -1,20 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenedzerMenu : MonoBehaviour
-{ 
-    public Canvas menu;
+{
+    public Canvas menuInGameCanvas;
     public GameObject op;
-    public GameObject men;
+    public GameObject menuInGame;
+    public GameObject helpMenu;
+    public Canvas helpMenuCanvas;
     Scene scena;
-    
-    
+    private Double lastTimeKeyPressed;
+
+
     public void NowaGra(string Plansza1)
     {
         SceneManager.LoadScene(Plansza1);
+
     }
 
     public void Wyjscie()
@@ -24,7 +26,7 @@ public class MenedzerMenu : MonoBehaviour
 
     public void Opcje()
     {
-        men.SetActive(false);
+        menuInGame.SetActive(false);
         op.SetActive(true);
     }
 
@@ -33,13 +35,13 @@ public class MenedzerMenu : MonoBehaviour
         scena = SceneManager.GetActiveScene();
         if (scena.name == "Plansza1")
         {
-            men.SetActive(false);
+            menuInGame.SetActive(false);
         }
     }
 
     public void Zatwierdz()
     {
-        men.SetActive(true);
+        menuInGame.SetActive(true);
         op.SetActive(false);
     }
 
@@ -58,16 +60,42 @@ public class MenedzerMenu : MonoBehaviour
 
 
     }
-    
+
+    private bool canBePressed() //żeby nie włączało się po kilka razy np. menu w grze
+    {
+        if (Time.time - lastTimeKeyPressed > 0.1)
+        {
+            lastTimeKeyPressed = Time.time;
+            return true;
+        }
+        return false;
+    }
+
+    void helpMenuUpdate()
+    {
+        if (Input.GetKey(KeyCode.F1) && canBePressed())
+        {
+
+            helpMenu.SetActive(true);
+            helpMenuCanvas.enabled = true;
+
+
+        }
+        if (helpMenu.activeSelf && Input.GetKey(KeyCode.Escape) && canBePressed())
+        {
+            helpMenu.SetActive(false);
+            helpMenuCanvas.enabled = false;
+        }
+    }
     void Update()
     {
         if (scena.name == "Plansza1")
         {
-            if (Input.GetKeyUp(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape) && !helpMenu.activeSelf && canBePressed())
             {
-                men.SetActive(true);
-                menu.enabled = !menu.enabled;
-                if (menu.enabled)
+                menuInGame.SetActive(true);
+                menuInGameCanvas.enabled = !menuInGameCanvas.enabled;
+                if (menuInGameCanvas.enabled)
                 {
                     Time.timeScale = 0;
                     Cursor.visible = enabled;
@@ -78,8 +106,9 @@ public class MenedzerMenu : MonoBehaviour
                     Time.timeScale = 1;
                 }
             }
+            helpMenuUpdate();
         }
-        
+
     }
 
 }
