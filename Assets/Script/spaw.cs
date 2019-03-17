@@ -20,9 +20,17 @@ public class spaw : MonoBehaviour
         {
             transform.position = miejsceRespawnu;
         }
+        if (Player.tag == "Enemy")
+        {
+            transform.position = miejsceRespawnu;
+        }
         if (Player.tag == "Checkpoint")
         {
             miejsceRespawnu = Player.transform.position;
+        }
+        if (Player.tag == "Trap")
+        {
+            transform.position = miejsceRespawnu;
         }
     }
 }

@@ -9,11 +9,13 @@ public class Opcjemenu : MonoBehaviour
     public Toggle FullScreen;
     public Dropdown rozdzielczosc;
     public Slider glosnosc;
+    public bool fs;
 
     private Resolution[] rozdzielczosci;
     // Start is called before the first frame update
     void Start()
     {
+        
         rozdzielczosci = Screen.resolutions;
 
         rozdzielczosc.options.Clear();

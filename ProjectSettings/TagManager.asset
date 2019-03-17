@@ -11,6 +11,7 @@ TagManager:
   - End Stage
   - Fall
   - Checkpoint
+  - Trap
   layers:
   - Default
   - TransparentFX

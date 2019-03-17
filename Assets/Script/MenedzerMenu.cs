@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenedzerMenu : MonoBehaviour
@@ -9,9 +10,21 @@ public class MenedzerMenu : MonoBehaviour
     public GameObject menuInGame;
     public GameObject helpMenu;
     public Canvas helpMenuCanvas;
+    public GameObject zapis_opcji;
     Scene scena;
     private Double lastTimeKeyPressed;
+    public GameObject menu_wyj;
 
+    public bool fs;
+
+    private void Awake()
+    {
+        PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
+        PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
+        fs = Screen.fullScreen;
+        PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
+
+    }
 
     public void NowaGra(string Plansza1)
     {
@@ -21,7 +34,7 @@ public class MenedzerMenu : MonoBehaviour
 
     public void Wyjscie()
     {
-        Application.Quit();
+        menu_wyj.SetActive(true);
     }
 
     public void Opcje()
@@ -41,8 +54,8 @@ public class MenedzerMenu : MonoBehaviour
 
     public void Zatwierdz()
     {
-        menuInGame.SetActive(true);
-        op.SetActive(false);
+        zapis_opcji.SetActive(true);
+      
     }
 
     public void PowrotDoMenu(string Menu)
@@ -57,8 +70,31 @@ public class MenedzerMenu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 1;
+    }
+    public void Tak()
+    {
+        Application.Quit();
+    }
 
+    public void Nie()
+    {
+        menu_wyj.SetActive(false);
+    }
 
+    public void Zapisz()
+    {
+        menuInGame.SetActive(true);
+        op.SetActive(false);
+        zapis_opcji.SetActive(false);
+    }
+
+    public void NieZapisuj()
+    {
+        Screen.SetResolution(PlayerPrefs.GetInt("rozdzielczoscSzer"), PlayerPrefs.GetInt("rozdzielczoscWys"), Screen.fullScreen = fs);
+        AudioListener.volume=PlayerPrefs.GetFloat("Glosnosc");
+        zapis_opcji.SetActive(false);
+        menuInGame.SetActive(true);
+        op.SetActive(false);
     }
 
     private bool canBePressed() //żeby nie włączało się po kilka razy np. menu w grze
