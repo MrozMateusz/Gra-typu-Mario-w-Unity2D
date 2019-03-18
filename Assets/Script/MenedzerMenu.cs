@@ -15,7 +15,7 @@ public class MenedzerMenu : MonoBehaviour
     private Double lastTimeKeyPressed;
     public GameObject menu_wyj;
 
-    public bool fs;
+    bool fs;
 
     private void Awake()
     {
@@ -81,8 +81,20 @@ public class MenedzerMenu : MonoBehaviour
         menu_wyj.SetActive(false);
     }
 
+    public void Pomoc()
+    {
+        helpMenu.SetActive(true);
+        menuInGame.SetActive(false);
+    }
+
     public void Zapisz()
     {
+        PlayerPrefs.SetInt("rozdzielczoscSzer", Screen.width);
+        PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
+        fs = Screen.fullScreen;
+        PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
+        
+
         menuInGame.SetActive(true);
         op.SetActive(false);
         zapis_opcji.SetActive(false);
@@ -121,13 +133,14 @@ public class MenedzerMenu : MonoBehaviour
         {
             helpMenu.SetActive(false);
             helpMenuCanvas.enabled = false;
+            Time.timeScale = 1;
         }
     }
     void Update()
     {
         if (scena.name == "Plansza1")
         {
-            if (Input.GetKey(KeyCode.Escape) && !helpMenu.activeSelf && canBePressed())
+            if (Input.GetKeyDown(KeyCode.Escape) && !helpMenu.activeSelf)
             {
                 menuInGame.SetActive(true);
                 menuInGameCanvas.enabled = !menuInGameCanvas.enabled;
