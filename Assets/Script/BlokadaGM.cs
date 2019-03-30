@@ -9,19 +9,9 @@ public class BlokadaGM : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(Gm);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+            DontDestroyOnLoad(Gm);
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 }

@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class MenedzerMenu : MonoBehaviour
 {
@@ -16,13 +18,22 @@ public class MenedzerMenu : MonoBehaviour
     public GameObject menu_wyj;
 
     bool fs;
+    private int scenazapisu;
 
     private void Awake()
     {
-        PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
+       PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
-        fs = Screen.fullScreen;
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
+
+        if (File.Exists(Application.persistentDataPath + "/UstawieniaDomyslne.d"))
+        {
+            BinaryFormatter Form = new BinaryFormatter();
+            FileStream zapisUst = File.Open(Application.persistentDataPath + "/UstawieniaDomyslne.d", FileMode.Open);
+            Save ustawienia = (Save)Form.Deserialize(zapisUst);
+            Screen.SetResolution(ustawienia.szerEkranu, ustawienia.wysEkranu, fs);
+            AudioListener.volume = ustawienia.Glosnosc;
+        }
 
     }
 
@@ -32,6 +43,36 @@ public class MenedzerMenu : MonoBehaviour
 
     }
 
+    public void Kontynuuj()
+    {
+        int OstatniaPlansza;
+    
+            if (File.Exists(Application.persistentDataPath + "/ZapisanaGra.d"))
+            {
+                BinaryFormatter Forma = new BinaryFormatter();
+                FileStream zapisGry = File.Open(Application.persistentDataPath + "/ZapisanaGra.d", FileMode.Open);
+                ZapisGry zapisG = (ZapisGry)Forma.Deserialize(zapisGry);
+                OstatniaPlansza = zapisG.Plansza;
+            PlayerPrefs.SetFloat("PozX", zapisG.PlayerX);
+            PlayerPrefs.SetFloat("PozY", zapisG.PlayerY);
+            PlayerPrefs.SetFloat("PozZ", zapisG.PlayerZ);
+            PlayerPrefs.Save();
+
+            if (OstatniaPlansza != 0)
+            {
+                SceneManager.LoadScene(OstatniaPlansza);
+            }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            return;
+        }
+    }
+
     public void Wyjscie()
     {
         menu_wyj.SetActive(true);
@@ -39,8 +80,8 @@ public class MenedzerMenu : MonoBehaviour
 
     public void Opcje()
     {
-        menuInGame.SetActive(false);
-        op.SetActive(true);
+            menuInGame.SetActive(false);
+            op.SetActive(true);
     }
 
     void Start()
@@ -54,14 +95,26 @@ public class MenedzerMenu : MonoBehaviour
 
     public void Zatwierdz()
     {
-        zapis_opcji.SetActive(true);
-      
+        zapis_opcji.SetActive(true);  
     }
 
     public void PowrotDoMenu(string Menu)
     {
+        BinaryFormatter Forma = new BinaryFormatter();
+        FileStream zapisGry = File.Create(Application.persistentDataPath + "/ZapisanaGra.d");
+        ZapisGry zapis= new ZapisGry();
+
+        zapis.Plansza = PlayerPrefs.GetInt("ZapisanaPlansza");
+        zapis.PlayerX = PlayerPrefs.GetFloat("PolX");
+        zapis.PlayerY = PlayerPrefs.GetFloat("PolY");
+        zapis.PlayerZ = PlayerPrefs.GetFloat("PolZ");
+
+        Forma.Serialize(zapisGry, zapis);
+        zapisGry.Close();
+
         SceneManager.LoadScene(Menu);
         Time.timeScale = 1;
+        
     }
 
     public void PowrotDoGry(GameObject men)
@@ -86,14 +139,25 @@ public class MenedzerMenu : MonoBehaviour
         helpMenu.SetActive(true);
         menuInGame.SetActive(false);
     }
-
+ 
     public void Zapisz()
     {
         PlayerPrefs.SetInt("rozdzielczoscSzer", Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
         fs = Screen.fullScreen;
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
-        
+
+        BinaryFormatter Form = new BinaryFormatter();
+        FileStream zapisUst = File.Create(Application.persistentDataPath + "/UstawieniaDomyslne.d");
+        Save ustawienia = new Save();
+
+        ustawienia.fullscreen = fs;
+        ustawienia.szerEkranu = PlayerPrefs.GetInt("rozdzielczoscSzer");
+        ustawienia.wysEkranu = PlayerPrefs.GetInt("rozdzielczoscWys");
+        ustawienia.Glosnosc= PlayerPrefs.GetFloat("Glosnosc");
+
+        Form.Serialize(zapisUst, ustawienia);
+        zapisUst.Close();
 
         menuInGame.SetActive(true);
         op.SetActive(false);
@@ -158,6 +222,27 @@ public class MenedzerMenu : MonoBehaviour
             helpMenuUpdate();
         }
 
+    }
+    [Serializable]
+    class Save
+    {
+        public int wysEkranu;
+        public int szerEkranu;
+        public float Glosnosc;
+        public bool fullscreen;
+
+    }
+
+    [Serializable]
+    class ZapisGry
+    {
+        public float PlayerX;
+        public float PlayerY;
+        public float PlayerZ;
+        public int Plansza;
+       // public string nick;
+      //  public int wynik;
+       // public int ilZycie;
     }
 
 }

@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class Opcjemenu : MonoBehaviour
 {
+    public int wysEkranu;
+    public int szerEkranu;
+    public float Glosnosc;
+    public bool fullscreen;
 
     public Toggle FullScreen;
     public Dropdown rozdzielczosc;
@@ -19,17 +25,20 @@ public class Opcjemenu : MonoBehaviour
         rozdzielczosci = Screen.resolutions;
 
         FullScreen.isOn = Screen.fullScreen;
-        glosnosc.value = AudioListener.volume;
 
+        glosnosc.value = AudioListener.volume;
+       
+       
         glosnosc.onValueChanged.AddListener(delegate { GlosnoscZmiana(); });
         FullScreen.onValueChanged.AddListener(delegate { FullScreenZmiana(); });
         rozdzielczosc.onValueChanged.AddListener(delegate { RozdzielczoscZmiana(); });
+
+
 
     }
 
     private void FixedUpdate()
     {
-
 
         rozdzielczosc.options.Clear();
         for (int i = 0; i < rozdzielczosci.Length; i++)
@@ -38,9 +47,9 @@ public class Opcjemenu : MonoBehaviour
                 rozdzielczosc.options.Add(new Dropdown.OptionData());
                 rozdzielczosc.options[i].text = RoztoString(rozdzielczosci[i]);
                 
-                if (RoztoString(rozdzielczosci[i]) == (Screen.width + "x" + Screen.height))
+                if (RoztoString(rozdzielczosci[i]) == (Screen.width + "x" + Screen.height + "x" + rozdzielczosci[i].refreshRate ))
                 {
-                    rozdzielczosc.value = i;
+                rozdzielczosc.value = i;
                 }
             
         }
@@ -56,7 +65,7 @@ public class Opcjemenu : MonoBehaviour
             FullScreen.isOn = false;
         }
         glosnosc.value = AudioListener.volume;
-
+        
     }
     public void FullScreenZmiana()
     {
@@ -76,17 +85,17 @@ public class Opcjemenu : MonoBehaviour
 
     public void RozdzielczoscZmiana()
     {
-        Screen.SetResolution(int.Parse(StringToRoz(rozdzielczosc.options[rozdzielczosc.value].text)[0]), int.Parse(StringToRoz(rozdzielczosc.options[rozdzielczosc.value].text)[1]), FullScreen.isOn);
+        Screen.SetResolution(int.Parse(StringToRoz(rozdzielczosc.options[rozdzielczosc.value].text)[0]), int.Parse(StringToRoz(rozdzielczosc.options[rozdzielczosc.value].text)[1]), FullScreen.isOn, int.Parse(StringToRoz(rozdzielczosc.options[rozdzielczosc.value].text)[2]));
     }
-
 
     string[] StringToRoz(string roz)
     {
-        return roz.Split('x');
+        return roz.Split('x', 'H','z');
     }
 
     string RoztoString(Resolution roz)
-        {
-            return roz.width + "x" + roz.height;
+        { 
+            return roz.width + "x" + roz.height + " x "+ roz.refreshRate + "H" + "z";
         }
+
 }

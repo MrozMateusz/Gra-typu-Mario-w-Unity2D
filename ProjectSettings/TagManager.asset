@@ -12,6 +12,7 @@ TagManager:
   - Fall
   - Checkpoint
   - Trap
+  - Moneta
   layers:
   - Default
   - TransparentFX
