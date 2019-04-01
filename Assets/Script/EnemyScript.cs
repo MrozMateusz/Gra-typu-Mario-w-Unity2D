@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-   public Rigidbody2D rig2d;
+    Rigidbody2D rig2d;
+    GameObject[] gm;
     Scene scena;
 
     float predkosc = 3;
@@ -17,8 +18,10 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         scena = SceneManager.GetActiveScene();
-        rig2d = GetComponent<Rigidbody2D>();
-
+        gm = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject mg in gm) {
+            rig2d = GetComponent<Rigidbody2D>();
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +33,9 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
-            ruch_przec();
+            foreach (GameObject mg in gm) {
+                ruch_przec();
+            }
         }
     }
 

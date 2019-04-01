@@ -40,7 +40,9 @@ public class MenedzerMenu : MonoBehaviour
     public void NowaGra(string Plansza1)
     {
         SceneManager.LoadScene(Plansza1);
-
+        PlayerPrefs.SetFloat("PozX", -2.091f);
+        PlayerPrefs.SetFloat("PozY", -3.497f);
+        PlayerPrefs.SetFloat("PozZ", 13.582f);
     }
 
     public void Kontynuuj()
