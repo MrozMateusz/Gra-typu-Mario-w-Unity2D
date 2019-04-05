@@ -44,12 +44,12 @@ public class move : MonoBehaviour
         if(Horizontal > 0f)
         {
             rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
-            transform.localScale = new Vector2(1.211507f, 1.1119f);
+            transform.localScale = new Vector2(0.8372915f, 0.6437907f);
         }
         else if(Horizontal < 0f)
         {
             rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
-            transform.localScale = new Vector2(-1.211507f, 1.1119f);
+            transform.localScale = new Vector2(-0.8372915f, 0.6437907f);
         }
         else
         {

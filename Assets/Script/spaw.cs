@@ -20,6 +20,7 @@ public class spaw : MonoBehaviour
         {
             float PX = PlayerPrefs.GetFloat("PozX");
             miejsceRespawnu = new Vector3(PlayerPrefs.GetFloat("PozX"), PlayerPrefs.GetFloat("PozY"), PlayerPrefs.GetFloat("PozZ"));
+           // Instantiate(PlayerPrefab, miejsceRespawnu, Quaternion.identity);
         }
         else {
            // Instantiate(PlayerPrefab, miejsceRespawnu, Quaternion.identity);
@@ -64,15 +65,4 @@ public class spaw : MonoBehaviour
             transform.position = miejsceRespawnu;
         }
     }
-/*
-    class ZapisGry
-    {
-        public float PlayerX;
-        public float PlayerY;
-        public float PlayerZ;
-       // public int Plansza;
-        // public string nick;
-        //  public int wynik;
-        // public int ilZycie;
-    }*/
 }

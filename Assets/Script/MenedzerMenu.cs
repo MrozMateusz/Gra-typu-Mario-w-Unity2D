@@ -33,6 +33,8 @@ public class MenedzerMenu : MonoBehaviour
             Save ustawienia = (Save)Form.Deserialize(zapisUst);
             Screen.SetResolution(ustawienia.szerEkranu, ustawienia.wysEkranu, fs);
             AudioListener.volume = ustawienia.Glosnosc;
+
+            zapisUst.Close();
         }
 
     }
@@ -59,6 +61,8 @@ public class MenedzerMenu : MonoBehaviour
             PlayerPrefs.SetFloat("PozY", zapisG.PlayerY);
             PlayerPrefs.SetFloat("PozZ", zapisG.PlayerZ);
             PlayerPrefs.Save();
+
+            zapisGry.Close();
 
             if (OstatniaPlansza != 0)
             {

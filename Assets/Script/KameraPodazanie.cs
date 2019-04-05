@@ -8,7 +8,7 @@ public class KameraPodazanie : MonoBehaviour
     Vector3 pozycjaGracza;
     private void Start()
     {
-      //  Gracz = GameObject.FindWithTag("Player");
+        Gracz = GameObject.FindWithTag("Player");
         
     }
     // Update is called once per frame

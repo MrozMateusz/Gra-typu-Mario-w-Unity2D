@@ -1182,14 +1182,14 @@ RectTransform:
   m_GameObject: {fileID: 411551938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0501, y: 1.1373, z: 1}
+  m_LocalScale: {x: 0.7695084, y: 0.8813962, z: 1}
   m_Children: []
   m_Father: {fileID: 1137793643}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26, y: 36.3}
+  m_AnchoredPosition: {x: -26, y: 28.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &411551940
@@ -4410,6 +4410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb1897a99044d943b4c47ed4c3a902d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wysEkranu: 0
+  szerEkranu: 0
+  Glosnosc: 0
+  fullscreen: 0
   FullScreen: {fileID: 875388270}
   rozdzielczosc: {fileID: 1449129935}
   glosnosc: {fileID: 121953681}
