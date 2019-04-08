@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class KameraPodazanie : MonoBehaviour
 {
-    public GameObject Gracz;
+    GameObject Gracz;
     Vector3 pozycjaGracza;
+    
     private void Start()
     {
         Gracz = GameObject.FindWithTag("Player");
-        
     }
     // Update is called once per frame
     void FixedUpdate()

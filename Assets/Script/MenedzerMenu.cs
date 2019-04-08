@@ -22,7 +22,7 @@ public class MenedzerMenu : MonoBehaviour
 
     private void Awake()
     {
-       PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
+        PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
 
@@ -42,9 +42,9 @@ public class MenedzerMenu : MonoBehaviour
     public void NowaGra(string Plansza1)
     {
         SceneManager.LoadScene(Plansza1);
-        PlayerPrefs.SetFloat("PozX", -2.091f);
-        PlayerPrefs.SetFloat("PozY", -3.497f);
-        PlayerPrefs.SetFloat("PozZ", 13.582f);
+        PlayerPrefs.SetFloat("PozX", -10.77f);
+        PlayerPrefs.SetFloat("PozY", -2.86f);
+        PlayerPrefs.SetFloat("PozZ", 13.6342f);
     }
 
     public void Kontynuuj()

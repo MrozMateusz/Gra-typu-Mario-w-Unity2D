@@ -56,13 +56,13 @@ public class EnemyScript : MonoBehaviour
             if (zmiana == true)
             {
                 rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
-                this.transform.localScale = new Vector3(-1f, 1f, 1f);
+                this.transform.localScale = new Vector3(-0.5791352f, 0.567311f, 1f);
 
             }
             else
             {
                 rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
-                this.transform.localScale = new Vector3(1f, 1f, 1f);
+                this.transform.localScale = new Vector3(0.5791352f, 0.567311f, 1f);
 
             }
         }
