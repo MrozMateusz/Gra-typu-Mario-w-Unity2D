@@ -49,18 +49,20 @@ public class EnemyScript : MonoBehaviour
     {
         //(Vector2.Distance(this.transform.position, player.position) < 5) && (this.transform.position.x > punktStartowy.position.x) && (this.transform.position.x < punktKoncowy.position.x)
         if (isBetween(player, punktStartowy, punktKoncowy) && (isBetween(this.transform, punktStartowy, punktKoncowy))){ //podążanie przeciwników za playerem
-            this.transform.position = Vector3.MoveTowards(transform.position, player.position, predkosc * Time.deltaTime);
+            this.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, this.transform.position.y, this.transform.position.z), predkosc * Time.deltaTime);
         }
         else
         {
             if (zmiana == true)
             {
                 rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
+                this.transform.localScale = new Vector3(-1f, 1f, 1f);
 
             }
             else
             {
                 rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
+                this.transform.localScale = new Vector3(1f, 1f, 1f);
 
             }
         }
@@ -83,6 +85,8 @@ public class EnemyScript : MonoBehaviour
         if (kolizja.tag == "Start")
         {
             zmiana = true;
+
+
         }
         if (kolizja.tag == "End")
         {
