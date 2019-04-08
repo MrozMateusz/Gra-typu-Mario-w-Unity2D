@@ -8,6 +8,9 @@ public class EnemyScript : MonoBehaviour
     Rigidbody2D rig2d;
     GameObject[] gm;
     Scene scena;
+    private Transform player;
+    private Transform punktStartowy;
+    private Transform punktKoncowy;
 
     float predkosc = 3;
    // private Animator Animacja;
@@ -17,6 +20,9 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
+        punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
         scena = SceneManager.GetActiveScene();
         gm = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject mg in gm) {
@@ -41,16 +47,35 @@ public class EnemyScript : MonoBehaviour
 
     void ruch_przec()
     {
-        if (zmiana == true)
-        {
-            rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
-           
+        //(Vector2.Distance(this.transform.position, player.position) < 5) && (this.transform.position.x > punktStartowy.position.x) && (this.transform.position.x < punktKoncowy.position.x)
+        if (isBetween(player, punktStartowy, punktKoncowy) && (isBetween(this.transform, punktStartowy, punktKoncowy))){ //podążanie przeciwników za playerem
+            this.transform.position = Vector3.MoveTowards(transform.position, player.position, predkosc * Time.deltaTime);
         }
         else
         {
-            rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
-          
+            if (zmiana == true)
+            {
+                rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
+
+            }
+            else
+            {
+                rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
+
+            }
         }
+
+
+    }
+
+    private bool isBetween(Transform gameObject, Transform positio1, Transform position2)
+    {
+        if((gameObject.transform.position.x < position2.position.x) && (gameObject.transform.position.x > positio1.position.x))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnTriggerEnter2D(Collider2D kolizja)
