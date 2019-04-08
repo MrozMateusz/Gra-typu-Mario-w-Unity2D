@@ -10,10 +10,11 @@ public class DestroyThings : MonoBehaviour
     {
     }
 
-    private void OnTriggerEnter2D(Collider2D coin)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (coin.tag == "Player")
+        if (collider.tag == "Player")
         {
+            Debug.Log("kolizja z playerem");
             Destroy(this.gameObject);
         }
 

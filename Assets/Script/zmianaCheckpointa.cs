@@ -7,19 +7,19 @@ public class zmianaCheckpointa : MonoBehaviour
 
     public Sprite czerownaFlaga;
     public Sprite zielonaFlaga;
-    private SpriteRenderer zmiana;
+    private SpriteRenderer flaga;
     public bool zmienione;
     // Start is called before the first frame update
     void Start()
     {
-        zmiana = GetComponent<SpriteRenderer>();
+        flaga = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D Player)
     {
         if (Player.tag == "Player")
         {
-            zmiana.sprite = zielonaFlaga;
+            flaga.sprite = zielonaFlaga;
             zmienione = true;
         }
     }
