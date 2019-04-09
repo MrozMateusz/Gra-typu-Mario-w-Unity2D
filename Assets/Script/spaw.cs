@@ -8,24 +8,23 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class spaw : MonoBehaviour
 {
-    public Vector3 miejsceRespawnu;
+    Vector3 miejsceRespawnu;
     private GameObject respawnPlace;
     private int scena;
-    public GameObject PlayerPrefab;
 
     void Awake()
     {
 
-    if(PlayerPrefs.GetFloat("PozX")!=0 && PlayerPrefs.GetFloat("PozY") != 0 && PlayerPrefs.GetFloat("PozZ") != 0)
-        {
-            float PX = PlayerPrefs.GetFloat("PozX");
-            miejsceRespawnu = new Vector3(PlayerPrefs.GetFloat("PozX"), PlayerPrefs.GetFloat("PozY"), PlayerPrefs.GetFloat("PozZ"));
-           // Instantiate(PlayerPrefab, miejsceRespawnu, Quaternion.identity);
-        }
-        else {
-           // Instantiate(PlayerPrefab, miejsceRespawnu, Quaternion.identity);
-            respawnPlace = GameObject.Find("Respawn");
+           if(PlayerPrefs.GetFloat("PozX")!=0 && PlayerPrefs.GetFloat("PozY") != 0 && PlayerPrefs.GetFloat("PozZ") != 0)
+                {
+                    float PX = PlayerPrefs.GetFloat("PozX");
+                    miejsceRespawnu = new Vector3(PlayerPrefs.GetFloat("PozX"), PlayerPrefs.GetFloat("PozY"), PlayerPrefs.GetFloat("PozZ"));
+                    this.transform.position = miejsceRespawnu;  
+                }
+                else {
+        respawnPlace = GameObject.FindGameObjectWithTag("Respawn");
             miejsceRespawnu = respawnPlace.transform.position;
+            this.transform.position = miejsceRespawnu;
         }
     }
 

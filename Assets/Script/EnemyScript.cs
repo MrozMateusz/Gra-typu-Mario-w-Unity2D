@@ -11,8 +11,9 @@ public class EnemyScript : MonoBehaviour
     private Transform player;
     private Transform punktStartowy;
     private Transform punktKoncowy;
+    private Rigidbody2D enemyRigidBody;
 
-    float predkosc = 3;
+    float predkosc = 2;
    // private Animator Animacja;
     readonly string naz = "Menu";
     bool zmiana=true;
@@ -24,9 +25,11 @@ public class EnemyScript : MonoBehaviour
         punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
         punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
         scena = SceneManager.GetActiveScene();
+        enemyRigidBody = this.GetComponent<Rigidbody2D>();
         gm = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject mg in gm) {
-            rig2d = GetComponent<Rigidbody2D>();
+        predkosc = predkosc * Time.deltaTime;
+        foreach (GameObject mg in gm) { //chyba niepotrzebne 
+            rig2d = mg.GetComponent<Rigidbody2D>();
         }
     }
 
@@ -49,20 +52,22 @@ public class EnemyScript : MonoBehaviour
     {
         //(Vector2.Distance(this.transform.position, player.position) < 5) && (this.transform.position.x > punktStartowy.position.x) && (this.transform.position.x < punktKoncowy.position.x)
         if (isBetween(player, punktStartowy, punktKoncowy) && (isBetween(this.transform, punktStartowy, punktKoncowy))){ //podążanie przeciwników za playerem
+            enemyRigidBody.velocity = new Vector2(1, 1);
             this.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, this.transform.position.y, this.transform.position.z), predkosc * Time.deltaTime);
+
         }
         else
         {
             if (zmiana == true)
             {
-                rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
-                this.transform.localScale = new Vector3(-1f, 1f, 1f);
+                enemyRigidBody.velocity = new Vector2(predkosc, enemyRigidBody.velocity.y);
+                this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
 
             }
             else
             {
-                rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
-                this.transform.localScale = new Vector3(1f, 1f, 1f);
+                enemyRigidBody.velocity = new Vector2(-predkosc, -enemyRigidBody.velocity.y);
+                this.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
 
             }
         }
