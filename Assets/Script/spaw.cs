@@ -12,9 +12,12 @@ public class Spaw : MonoBehaviour
     private GameObject respawnPlace;
     private int scena;
     private Animator animacja;
-    //float timer = 0.0f;
-    //bool zranienie=false;
-    //bool uderzenie = false;
+    float timer = 0.0f;
+    public int zranienie = 0;
+    public int uderzenie = 0;
+    bool Pusc = false;
+    public GameObject part;
+
 
     void Awake()
     {
@@ -31,36 +34,48 @@ public class Spaw : MonoBehaviour
             this.transform.position = miejsceRespawnu;
         }
     }
-   /* private void Start()
-    {
-        animacja = GetComponent<Animator>();
-    }
-
+   
     private void Update()
     {
+
         timer += Time.deltaTime;
-        if (uderzenie == true)
+        if (uderzenie == 1)
         {
             if (timer > 1.2f)
             {
                 transform.position = miejsceRespawnu;
-                zranienie = false;
-                uderzenie = false;
+                zranienie = 0;
+                uderzenie = 0;
+
+                if (timer > 1.5f)
+                {
+                    Pusc = false;
+                }
+               
             }
-       
-        animacja.SetBool("Zranienie", zranienie);
-            }
-    }*/
+        }
+
+        if (Pusc == true)
+        {
+            part.SetActive(true);
+        }
+        else
+        {
+            part.SetActive(false);
+        }
+
+        PlayerPrefs.SetInt("Zran", zranienie);
+        //PlayerPrefs.SetInt("Uderz", uderzenie);
+    }
 
     private void OnCollisionEnter2D(Collision2D Player)
     {
         if (Player.gameObject.tag == "Enemy")
-        {/*
+        {
             timer = 0.0f;
-            zranienie = true;
-            uderzenie = true;
-            */
-            transform.position = miejsceRespawnu;
+            zranienie = 1;
+            uderzenie = 1;
+            Pusc = true;
         }
     }
 
@@ -70,6 +85,7 @@ public class Spaw : MonoBehaviour
         if (Player.tag=="Fall")
         {   
                 transform.position = miejsceRespawnu;
+            Pusc = true;
         }
      
         if (Player.tag == "Checkpoint")
@@ -86,11 +102,11 @@ public class Spaw : MonoBehaviour
         }
         if (Player.tag == "Trap")
         {
-            /*
+            
             timer = 0.0f;
-            zranienie = true;
-            uderzenie = false;*/
-            transform.position = miejsceRespawnu;
+            zranienie = 1;
+            uderzenie = 1;
+            Pusc = true;
         }
     }
 }
