@@ -13,6 +13,7 @@ TagManager:
   - Checkpoint
   - Trap
   - Moneta
+  - Buff
   layers:
   - Default
   - TransparentFX

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class punktacja : MonoBehaviour
 {
-
+    GameObject pl;
     public int wynik = 0;
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        pl = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -27,12 +28,4 @@ public class punktacja : MonoBehaviour
         }
 
     }
-
-    public void OnGUI()
-    {
-        GUI.backgroundColor = Color.black;
-        GUI.contentColor = Color.black;
-        GUI.Label(new Rect(10, 46, 800, 600), "Wynik: " + wynik);
-    }
-
 }

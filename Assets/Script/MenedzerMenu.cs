@@ -9,6 +9,7 @@ public class MenedzerMenu : MonoBehaviour
 {
     public Canvas menuInGameCanvas;
     public GameObject op;
+    public GameObject TW;
     public GameObject menuInGame;
     public GameObject helpMenu;
     public Canvas helpMenuCanvas;
@@ -16,6 +17,7 @@ public class MenedzerMenu : MonoBehaviour
     Scene scena;
     private Double lastTimeKeyPressed;
     public GameObject menu_wyj;
+    Resolution roz;
 
     bool fs;
     private int scenazapisu;
@@ -84,6 +86,18 @@ public class MenedzerMenu : MonoBehaviour
         menu_wyj.SetActive(true);
     }
 
+    public void TablicaWynikow()
+    {
+        menuInGame.SetActive(false);
+        TW.SetActive(true);
+    }
+
+    public void PowrotZTW()
+    {
+        menuInGame.SetActive(true);
+        TW.SetActive(false);
+    }
+
     public void Opcje()
     {
             menuInGame.SetActive(false);
@@ -150,6 +164,7 @@ public class MenedzerMenu : MonoBehaviour
     {
         PlayerPrefs.SetInt("rozdzielczoscSzer", Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
+        PlayerPrefs.SetInt("RefRat", roz.refreshRate);
         fs = Screen.fullScreen;
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
 
@@ -160,6 +175,7 @@ public class MenedzerMenu : MonoBehaviour
         ustawienia.fullscreen = fs;
         ustawienia.szerEkranu = PlayerPrefs.GetInt("rozdzielczoscSzer");
         ustawienia.wysEkranu = PlayerPrefs.GetInt("rozdzielczoscWys");
+        ustawienia.refRate = PlayerPrefs.GetInt("RefRat");
         ustawienia.Glosnosc= PlayerPrefs.GetFloat("Glosnosc");
 
         Form.Serialize(zapisUst, ustawienia);
@@ -172,7 +188,7 @@ public class MenedzerMenu : MonoBehaviour
 
     public void NieZapisuj()
     {
-        Screen.SetResolution(PlayerPrefs.GetInt("rozdzielczoscSzer"), PlayerPrefs.GetInt("rozdzielczoscWys"), Screen.fullScreen = fs);
+        Screen.SetResolution(PlayerPrefs.GetInt("rozdzielczoscSzer"), PlayerPrefs.GetInt("rozdzielczoscWys"), Screen.fullScreen = fs, PlayerPrefs.GetInt("RefRat"));
         AudioListener.volume=PlayerPrefs.GetFloat("Glosnosc");
         zapis_opcji.SetActive(false);
         menuInGame.SetActive(true);
@@ -232,6 +248,8 @@ public class MenedzerMenu : MonoBehaviour
     [Serializable]
     class Save
     {
+        Resolution[] res;
+        public int refRate;
         public int wysEkranu;
         public int szerEkranu;
         public float Glosnosc;

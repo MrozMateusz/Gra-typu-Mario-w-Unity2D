@@ -7,10 +7,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class Opcjemenu : MonoBehaviour
 {
-    public int wysEkranu;
-    public int szerEkranu;
-    public float Glosnosc;
-    public bool fullscreen;
 
     public Toggle FullScreen;
     public Dropdown rozdzielczosc;
@@ -27,8 +23,7 @@ public class Opcjemenu : MonoBehaviour
         FullScreen.isOn = Screen.fullScreen;
 
         glosnosc.value = AudioListener.volume;
-       
-       
+
         glosnosc.onValueChanged.AddListener(delegate { GlosnoscZmiana(); });
         FullScreen.onValueChanged.AddListener(delegate { FullScreenZmiana(); });
         rozdzielczosc.onValueChanged.AddListener(delegate { RozdzielczoscZmiana(); });
@@ -46,12 +41,11 @@ public class Opcjemenu : MonoBehaviour
 
                 rozdzielczosc.options.Add(new Dropdown.OptionData());
                 rozdzielczosc.options[i].text = RoztoString(rozdzielczosci[i]);
-                
-                if (RoztoString(rozdzielczosci[i]) == (Screen.width + "x" + Screen.height + "x" + rozdzielczosci[i].refreshRate ))
-                {
+
+            if (RoztoString(rozdzielczosci[i]) == (Screen.width + "x" + Screen.height + "x" + rozdzielczosci[i].refreshRate))
+            {
                 rozdzielczosc.value = i;
-                }
-            
+            }
         }
         rozdzielczosc.RefreshShownValue();
         fs = Screen.fullScreen;

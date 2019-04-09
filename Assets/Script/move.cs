@@ -14,8 +14,10 @@ public class move : MonoBehaviour
     public LayerMask LayerZiemii;
     private bool DotykaZiemii;
     private Animator Animacja;
+    public GameObject bufsIm;
     readonly string naz="Menu";
-    int licznikSkokow = 0;
+    float timer = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +29,19 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
 
        if (scena.name == naz)
         {
             Debug.Log("Zla scena. Poruszanie wylaczone!");
         }else{
             klaw();
+        }
+
+        if (timer > 6.0f)
+        {
+            skok = 5;
+            bufsIm.SetActive(false);
         }
     }
 
@@ -59,15 +68,22 @@ public class move : MonoBehaviour
         if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
         {
             rig2.velocity = new Vector2(rig2.velocity.x, skok);
-            licznikSkokow= licznikSkokow + 1;
         }
-
 
         Animacja.SetFloat("Predkosc", Mathf.Abs(rig2.velocity.x));
         Animacja.SetBool("NaZiemii", !DotykaZiemii);
     }
-    
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Buff")
+        {
+            skok = 8;
+            timer = 0.0f;
+            bufsIm.SetActive(true);
+        }
+    }
+
+
 }
 
