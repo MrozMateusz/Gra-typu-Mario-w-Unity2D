@@ -14,6 +14,7 @@ TagManager:
   - Trap
   - Moneta
   - Buff
+  - ZycieUP
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Ziemia
   - Tlo
   - przod
-  - 
+  - Punkty
   - 
   - 
   - 
@@ -50,6 +51,9 @@ TagManager:
   m_SortingLayers:
   - name: PRZOD
     uniqueID: 4217862123
+    locked: 0
+  - name: Punkty
+    uniqueID: 3760205793
     locked: 0
   - name: Tlo
     uniqueID: 4176962913

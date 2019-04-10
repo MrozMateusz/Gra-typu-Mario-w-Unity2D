@@ -10,6 +10,7 @@ public class MenedzerMenu : MonoBehaviour
     public Canvas menuInGameCanvas;
     public GameObject op;
     public GameObject TW;
+    public GameObject WDG;
     public GameObject menuInGame;
     public GameObject helpMenu;
     public Canvas helpMenuCanvas;
@@ -18,6 +19,8 @@ public class MenedzerMenu : MonoBehaviour
     private Double lastTimeKeyPressed;
     public GameObject menu_wyj;
     Resolution roz;
+    readonly string naz = "Menu";
+    public InputField input;
 
     bool fs;
     private int scenazapisu;
@@ -41,12 +44,36 @@ public class MenedzerMenu : MonoBehaviour
 
     }
 
-    public void NowaGra(string Plansza1)
+    public void NowaGra()
+    {
+        WDG.SetActive(true);
+    }
+
+    public void wpisz()
+    {
+        //PlayerPrefs.SetString("NicK", input.text);
+    }
+    
+    public void WejdzDoGry(string Plansza1)
     {
         SceneManager.LoadScene(Plansza1);
         PlayerPrefs.SetFloat("PozX", -10.77f);
         PlayerPrefs.SetFloat("PozY", -2.86f);
         PlayerPrefs.SetFloat("PozZ", 13.6342f);
+        PlayerPrefs.SetInt("Wynik", 0);
+        PlayerPrefs.SetInt("ILZY", 3);
+        PlayerPrefs.GetString("NicK");
+    }
+
+    public void WDM()
+    {
+        WDG.SetActive(false);
+    }
+
+    public void WDOMENU(string Menu)
+    {
+        SceneManager.LoadScene(Menu);
+        Time.timeScale = 1;
     }
 
     public void Kontynuuj()
@@ -62,6 +89,9 @@ public class MenedzerMenu : MonoBehaviour
             PlayerPrefs.SetFloat("PozX", zapisG.PlayerX);
             PlayerPrefs.SetFloat("PozY", zapisG.PlayerY);
             PlayerPrefs.SetFloat("PozZ", zapisG.PlayerZ);
+            PlayerPrefs.SetInt("Wynik", zapisG.wynik);
+            PlayerPrefs.SetInt("ILZY", zapisG.ilZycie);
+            PlayerPrefs.SetString("NicK", zapisG.nick);
             PlayerPrefs.Save();
 
             zapisGry.Close();
@@ -107,7 +137,7 @@ public class MenedzerMenu : MonoBehaviour
     void Start()
     {
         scena = SceneManager.GetActiveScene();
-        if (scena.name == "Plansza1")
+        if (scena.name != naz)
         {
             menuInGame.SetActive(false);
         }
@@ -128,6 +158,9 @@ public class MenedzerMenu : MonoBehaviour
         zapis.PlayerX = PlayerPrefs.GetFloat("PolX");
         zapis.PlayerY = PlayerPrefs.GetFloat("PolY");
         zapis.PlayerZ = PlayerPrefs.GetFloat("PolZ");
+        zapis.wynik = PlayerPrefs.GetInt("Wynik");
+        zapis.ilZycie = PlayerPrefs.GetInt("ILZY");
+        zapis.nick = PlayerPrefs.GetString("NicK");
 
         Forma.Serialize(zapisGry, zapis);
         zapisGry.Close();
@@ -224,7 +257,7 @@ public class MenedzerMenu : MonoBehaviour
     }
     void Update()
     {
-        if (scena.name == "Plansza1")
+        if (scena.name != naz)
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !helpMenu.activeSelf)
             {
@@ -264,9 +297,9 @@ public class MenedzerMenu : MonoBehaviour
         public float PlayerY;
         public float PlayerZ;
         public int Plansza;
-       // public string nick;
-      //  public int wynik;
-       // public int ilZycie;
+        public string nick;
+        public int wynik;
+        public int ilZycie;
     }
 
 }

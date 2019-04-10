@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class punktacja : MonoBehaviour
 {
-    GameObject pl;
-    public int wynik = 0;
+    static public int wynik;
 
     // Start is called before the first frame update
     void Start()
     {
-        pl = GameObject.FindGameObjectWithTag("Player");
+        wynik = PlayerPrefs.GetInt("Wynik");
+        this.GetComponent<MeshRenderer>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        PlayerPrefs.SetInt("WynikZapis", wynik);
-        
+        this.GetComponent<TextMesh>().text = wynik.ToString();
+
+        PlayerPrefs.SetInt("Wynik", wynik);
     }
 
-    private void OnTriggerEnter2D(Collider2D Player)
-    {
-        if(Player.tag == "Moneta")
-        {
-            wynik = wynik + 1;
-        }
-
-    }
 }

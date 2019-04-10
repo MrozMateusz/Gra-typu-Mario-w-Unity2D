@@ -15,8 +15,9 @@ public class Spaw : MonoBehaviour
     float timer = 0.0f;
     public int zranienie = 0;
     public int uderzenie = 0;
-    bool Pusc = false;
+    //bool Pusc = false;
     public GameObject part;
+    static public float czasGry = 0.0f;
 
 
     void Awake()
@@ -37,24 +38,26 @@ public class Spaw : MonoBehaviour
    
     private void Update()
     {
-
+        czasGry += Time.deltaTime;
         timer += Time.deltaTime;
         if (uderzenie == 1)
         {
-            if (timer > 1.2f)
+            if (timer > 1.45f)
             {
                 transform.position = miejsceRespawnu;
-                zranienie = 0;
-                uderzenie = 0;
-
-                if (timer > 1.5f)
+                if (timer > 1.9f)
                 {
-                    Pusc = false;
+                    zranienie = 0;
+                    uderzenie = 0;
+/*
+                    if (timer > 1.5f)
+                    {
+                        Pusc = false;
+                    }*/
                 }
-               
             }
         }
-
+/*
         if (Pusc == true)
         {
             part.SetActive(true);
@@ -62,7 +65,7 @@ public class Spaw : MonoBehaviour
         else
         {
             part.SetActive(false);
-        }
+        }*/
 
         PlayerPrefs.SetInt("Zran", zranienie);
         //PlayerPrefs.SetInt("Uderz", uderzenie);
@@ -75,7 +78,8 @@ public class Spaw : MonoBehaviour
             timer = 0.0f;
             zranienie = 1;
             uderzenie = 1;
-            Pusc = true;
+            Zycie.zycie -= 1;
+            // Pusc = true;
         }
     }
 
@@ -83,9 +87,11 @@ public class Spaw : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D Player)
     {
         if (Player.tag=="Fall")
-        {   
-                transform.position = miejsceRespawnu;
-            Pusc = true;
+        {
+            timer = 0.0f;
+            zranienie = 1;
+            uderzenie = 1;
+            Zycie.zycie -= 1;
         }
      
         if (Player.tag == "Checkpoint")
@@ -106,7 +112,19 @@ public class Spaw : MonoBehaviour
             timer = 0.0f;
             zranienie = 1;
             uderzenie = 1;
-            Pusc = true;
+            Zycie.zycie -= 1;
+        }
+
+        if (Player.tag == "Moneta")
+        {
+            punktacja.wynik += 1;
+        }
+
+        if (Player.tag == "ZycieUP")
+        {
+            Zycie.zycie += 1;
         }
     }
+
+   
 }
