@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Zycie : MonoBehaviour
 {
-    static public int zycie = 3000;
+    static public int zycie = 3;
     public GameObject kon;
+    public int mozKon = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +22,20 @@ public class Zycie : MonoBehaviour
         this.GetComponent<TextMesh>().text = zycie.ToString();
 
         PlayerPrefs.SetInt("ILZY", zycie);
-/*
-        if(zycie < 1)
+        
+        if (zycie < 1)
         {
             kon.SetActive(true);
+            Cursor.visible = true;
             Time.timeScale = 0.0f;
+            mozKon = 0;
+            PlayerPrefs.SetInt("MozKon", mozKon);
 
-        }*/
+        }
+        else
+        {
+            mozKon = 1;
+            PlayerPrefs.SetInt("MozKon", mozKon);
+        }
     }
 }

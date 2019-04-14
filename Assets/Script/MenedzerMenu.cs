@@ -21,6 +21,8 @@ public class MenedzerMenu : MonoBehaviour
     Resolution roz;
     readonly string naz = "Menu";
     public InputField input;
+    public GameObject kon;
+    public Button btkon;
 
     bool fs;
     private int scenazapisu;
@@ -51,7 +53,8 @@ public class MenedzerMenu : MonoBehaviour
 
     public void wpisz()
     {
-        //PlayerPrefs.SetString("NicK", input.text);
+        string nick = input.text;
+        PlayerPrefs.SetString("NicK", nick);
     }
     
     public void WejdzDoGry(string Plansza1)
@@ -65,9 +68,10 @@ public class MenedzerMenu : MonoBehaviour
         PlayerPrefs.GetString("NicK");
     }
 
-    public void WDM()
+    public void WrocDoMenu()
     {
         WDG.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void WDOMENU(string Menu)
@@ -78,37 +82,40 @@ public class MenedzerMenu : MonoBehaviour
 
     public void Kontynuuj()
     {
-        int OstatniaPlansza;
-    
+            int OstatniaPlansza;
+
             if (File.Exists(Application.persistentDataPath + "/ZapisanaGra.d"))
             {
                 BinaryFormatter Forma = new BinaryFormatter();
                 FileStream zapisGry = File.Open(Application.persistentDataPath + "/ZapisanaGra.d", FileMode.Open);
                 ZapisGry zapisG = (ZapisGry)Forma.Deserialize(zapisGry);
                 OstatniaPlansza = zapisG.Plansza;
-            PlayerPrefs.SetFloat("PozX", zapisG.PlayerX);
-            PlayerPrefs.SetFloat("PozY", zapisG.PlayerY);
-            PlayerPrefs.SetFloat("PozZ", zapisG.PlayerZ);
-            PlayerPrefs.SetInt("Wynik", zapisG.wynik);
-            PlayerPrefs.SetInt("ILZY", zapisG.ilZycie);
-            PlayerPrefs.SetString("NicK", zapisG.nick);
-            PlayerPrefs.Save();
+                PlayerPrefs.SetFloat("PozX", zapisG.PlayerX);
+                PlayerPrefs.SetFloat("PozY", zapisG.PlayerY);
+                PlayerPrefs.SetFloat("PozZ", zapisG.PlayerZ);
+                PlayerPrefs.SetInt("Wynik", zapisG.wynik);
+                PlayerPrefs.SetInt("ILZY", zapisG.ilZycie);
+                PlayerPrefs.SetString("NicK", zapisG.nick);
+                PlayerPrefs.Save();
 
-            zapisGry.Close();
+                zapisGry.Close();
+
+            Time.timeScale = 1;
 
             if (OstatniaPlansza != 0)
-            {
-                SceneManager.LoadScene(OstatniaPlansza);
+                {
+                    SceneManager.LoadScene(OstatniaPlansza);
+                }
+                else
+                {
+                    return;
+                }
             }
             else
             {
                 return;
             }
-        }
-        else
-        {
-            return;
-        }
+    
     }
 
     public void Wyjscie()
@@ -122,7 +129,7 @@ public class MenedzerMenu : MonoBehaviour
         TW.SetActive(true);
     }
 
-    public void PowrotZTW()
+    public void PowrotZTablicyWynikow()
     {
         menuInGame.SetActive(true);
         TW.SetActive(false);
@@ -136,6 +143,14 @@ public class MenedzerMenu : MonoBehaviour
 
     void Start()
     {
+
+        if (PlayerPrefsX.GetIntArray("TablicaWynikow", 0, 10)[0] == 0) {
+
+            int[] TablicaWynikow = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+            PlayerPrefsX.SetIntArray("TablicaWynikow", TablicaWynikow);
+        }
+
         scena = SceneManager.GetActiveScene();
         if (scena.name != naz)
         {
@@ -191,6 +206,17 @@ public class MenedzerMenu : MonoBehaviour
     {
         helpMenu.SetActive(true);
         menuInGame.SetActive(false);
+    }
+
+    public void GrajOdNowa()
+    {
+        SceneManager.LoadScene(1);
+        kon.SetActive(false);
+        Zycie.zycie = 3;
+        punktacja.wynik = 0;
+        CzasGry.minuty = 0.0f;
+        CzasGry.sekundy = 0.0f;
+        Time.timeScale = 1;
     }
  
     public void Zapisz()
@@ -276,8 +302,22 @@ public class MenedzerMenu : MonoBehaviour
             }
             helpMenuUpdate();
         }
+        else
+        {
+            if (PlayerPrefs.GetInt("MozKon") == 1)
+            {
+                btkon.interactable = true;
+            }
 
+            else
+            {
+                btkon.interactable = false;
+            }
+        }
+        
     }
+
+    
     [Serializable]
     class Save
     {
