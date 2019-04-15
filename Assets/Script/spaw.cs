@@ -15,9 +15,10 @@ public class Spaw : MonoBehaviour
     float timer = 0.0f;
     public int zranienie = 0;
     public int uderzenie = 0;
-    //bool Pusc = false;
+
     public GameObject part;
     static public float czasGry = 0.0f;
+   
 
 
     void Awake()
@@ -49,82 +50,75 @@ public class Spaw : MonoBehaviour
                 {
                     zranienie = 0;
                     uderzenie = 0;
-/*
-                    if (timer > 1.5f)
-                    {
-                        Pusc = false;
-                    }*/
+
                 }
             }
         }
-/*
-        if (Pusc == true)
-        {
-            part.SetActive(true);
-        }
-        else
-        {
-            part.SetActive(false);
-        }*/
 
-        PlayerPrefs.SetInt("Zran", zranienie);
-        //PlayerPrefs.SetInt("Uderz", uderzenie);
+
+        PlayerPrefs.SetInt("Zran", zranienie); 
+
     }
 
     private void OnCollisionEnter2D(Collision2D Player)
     {
-        if (Player.gameObject.tag == "Enemy")
+        if (Player.gameObject.tag == "Enemy" && EnemyScript.zniszcz == false)
         {
-            timer = 0.0f;
-            zranienie = 1;
-            uderzenie = 1;
-            Zycie.zycie -= 1;
-            // Pusc = true;
+            if (move.zranienie != true)
+            {
+                timer = 0.0f;
+                zranienie = 1;
+                uderzenie = 1;
+                Zycie.zycie -= 1;
+            }
         }
+
     }
 
 
     private void OnTriggerEnter2D(Collider2D Player)
     {
-        if (Player.tag=="Fall")
+        if (move.zranienie != true)
         {
-            timer = 0.0f;
-            zranienie = 1;
-            uderzenie = 1;
-            Zycie.zycie -= 1;
-        }
-     
-        if (Player.tag == "Checkpoint")
-        {
-            miejsceRespawnu = Player.transform.position;
-            
+            if (Player.tag == "Fall")
+            {
+                timer = 0.0f;
+                zranienie = 1;
+                uderzenie = 1;
+                Zycie.zycie -= 1;
+            }
+
+
+            if (Player.tag == "Checkpoint")
+            {
+                miejsceRespawnu = Player.transform.position;
+
                 scena = SceneManager.GetActiveScene().buildIndex;
-            PlayerPrefs.SetInt("ZapisanaPlansza", scena);
-            PlayerPrefs.SetFloat("PolX", Player.transform.position.x);
-            PlayerPrefs.SetFloat("PolY", Player.transform.position.y);
-            PlayerPrefs.SetFloat("PolZ", Player.transform.position.z);
-            PlayerPrefs.Save();
+                PlayerPrefs.SetInt("ZapisanaPlansza", scena);
+                PlayerPrefs.SetFloat("PolX", Player.transform.position.x);
+                PlayerPrefs.SetFloat("PolY", Player.transform.position.y);
+                PlayerPrefs.SetFloat("PolZ", Player.transform.position.z);
+                PlayerPrefs.Save();
 
-        }
-        if (Player.tag == "Trap")
-        {
-            
-            timer = 0.0f;
-            zranienie = 1;
-            uderzenie = 1;
-            Zycie.zycie -= 1;
-        }
+            }
+            if (Player.tag == "Trap")
+            {
 
-        if (Player.tag == "Moneta")
-        {
-            punktacja.wynik += 1;
-        }
+                timer = 0.0f;
+                zranienie = 1;
+                uderzenie = 1;
+                Zycie.zycie -= 1;
+            }
 
-        if (Player.tag == "ZycieUP")
-        {
-            Zycie.zycie += 1;
+            if (Player.tag == "Moneta")
+            {
+                punktacja.wynik += 1;
+            }
+
+            if (Player.tag == "ZycieUP")
+            {
+                Zycie.zycie += 1;
+            }
         }
     }
-
-   
 }

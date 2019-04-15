@@ -8,7 +8,7 @@ public class move : MonoBehaviour
     private Rigidbody2D rig2;
     float skok = 5;
     float predkosc = 3;
-    bool zranienie = false;
+    static public bool zranienie = false;
 
     Scene scena;
     public Transform ziemia;

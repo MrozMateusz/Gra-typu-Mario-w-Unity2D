@@ -23,6 +23,9 @@ public class MenedzerMenu : MonoBehaviour
     public InputField input;
     public GameObject kon;
     public Button btkon;
+    public Button rozp;
+    string nick;
+    float timer = 0.0f;
 
     bool fs;
     private int scenazapisu;
@@ -53,12 +56,20 @@ public class MenedzerMenu : MonoBehaviour
 
     public void wpisz()
     {
-        string nick = input.text;
-        PlayerPrefs.SetString("NicK", nick);
+        rozp.interactable = false;
+        nick = input.text;
+
+        
+            PlayerPrefs.SetString("NicK", nick);
+        
+        
+        
     }
     
     public void WejdzDoGry(string Plansza1)
     {
+        if (nick != null)
+         {
         SceneManager.LoadScene(Plansza1);
         PlayerPrefs.SetFloat("PozX", -10.77f);
         PlayerPrefs.SetFloat("PozY", -2.86f);
@@ -66,6 +77,14 @@ public class MenedzerMenu : MonoBehaviour
         PlayerPrefs.SetInt("Wynik", 0);
         PlayerPrefs.SetInt("ILZY", 3);
         PlayerPrefs.GetString("NicK");
+            rozp.interactable = true;
+   
+    }
+    else
+    {
+            timer = 0.0f;
+        rozp.interactable = false;
+        }
     }
 
     public void WrocDoMenu()
@@ -149,6 +168,14 @@ public class MenedzerMenu : MonoBehaviour
             int[] TablicaWynikow = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
             PlayerPrefsX.SetIntArray("TablicaWynikow", TablicaWynikow);
+        }
+
+        if (PlayerPrefsX.GetStringArray("TablicaWynikowNick", "", 10)[0] == "")
+        {
+
+            string[] TablicaWynikowNick = new string[10] {"", "" , "" , "" , "", "" , "" , "" , "" , "" };
+
+            PlayerPrefsX.SetStringArray("TablicaWynikowNick", TablicaWynikowNick);
         }
 
         scena = SceneManager.GetActiveScene();
@@ -313,8 +340,15 @@ public class MenedzerMenu : MonoBehaviour
             {
                 btkon.interactable = false;
             }
+
+            timer += Time.deltaTime;
         }
-        
+        if (timer > 0.5f)
+        {
+            rozp.interactable = true;
+        }
+
+
     }
 
     

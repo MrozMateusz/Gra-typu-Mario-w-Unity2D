@@ -5423,7 +5423,18 @@ MonoBehaviour:
   m_CharacterLimit: 8
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 394998845}
+        m_MethodName: wpisz
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -7242,6 +7253,11 @@ PrefabInstance:
       propertyPath: input
       value: 
       objectReference: {fileID: 1663371981}
+    - target: {fileID: 2463186772235958411, guid: 56e7b3936ccf16743912327bbf76ecb7,
+        type: 3}
+      propertyPath: rozp
+      value: 
+      objectReference: {fileID: 2102598582}
     - target: {fileID: 2463186772235958408, guid: 56e7b3936ccf16743912327bbf76ecb7,
         type: 3}
       propertyPath: m_LocalPosition.x

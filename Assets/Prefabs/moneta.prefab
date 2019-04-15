@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 1767421067021275229}
   - component: {fileID: 4285538189841033984}
   - component: {fileID: 386795440569470505}
+  - component: {fileID: 2829217642173927448}
+  - component: {fileID: 4749248119156125467}
   m_Layer: 0
   m_Name: moneta
-  m_TagString: Untagged
+  m_TagString: Moneta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +59,6 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -97,3 +98,27 @@ CircleCollider2D:
   m_Offset: {x: 0.05742178, y: 0.06246341}
   serializedVersion: 2
   m_Radius: 0.36624554
+--- !u!114 &2829217642173927448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097593992979355824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3305d43865afc24191230546c8c531d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4749248119156125467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7097593992979355824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f3a57e0680ca040a540f0e5c3e4c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
