@@ -21,21 +21,36 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
-        punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
-        scena = SceneManager.GetActiveScene();
-        gm = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject mg in gm) {
-            rig2d = GetComponent<Rigidbody2D>();
-            }
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+
+ 
+        if (scena.name == naz)
+        {
+            Debug.Log("Zla scena. Poruszanie wylaczone!");
+        }
+        else
+        {
+            //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
+
+
+            punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
+            
+            gm = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject mg in gm)
+            {
+                rig2d = GetComponent<Rigidbody2D>();
+            }
+        }
+
+
+            scena = SceneManager.GetActiveScene();
+
             zniszcz = false;
             if (scena.name == naz)
             {
@@ -93,22 +108,28 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D kolizja)
     {
-        if (kolizja.tag == "Start")
+        if (scena.name == naz)
         {
-            zmiana = true;
-
-
+            Debug.Log("Zla scena. Poruszanie wylaczone!");
         }
-        if (kolizja.tag == "End")
+        else 
         {
-            zmiana = false;
-        }
+                if (kolizja.tag == "Start")
+                {
+                    zmiana = true;
 
-       /* if (kolizja.tag == "Player")
+
+                }
+                if (kolizja.tag == "End")
+                {
+                    zmiana = false;
+                }
+        }
+        if (kolizja.tag == "Player")
         {
-            //kolizja.gameObject.SetActive(false);
+            Destroy(kolizja.gameObject);
             zniszcz = true;
-        }*/
+        }
 
 
     }

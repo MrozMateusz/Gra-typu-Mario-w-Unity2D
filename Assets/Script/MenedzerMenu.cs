@@ -24,8 +24,13 @@ public class MenedzerMenu : MonoBehaviour
     public GameObject kon;
     public Button btkon;
     public Button rozp;
+    public Button czysc;
     string nick;
     float timer = 0.0f;
+    bool gotowy_do_czyszcz = false;
+
+    int[] TablicaWynikow = new int[10];
+    string[] TablicaWynikowNick = new string[10];
 
     bool fs;
     private int scenazapisu;
@@ -142,7 +147,7 @@ public class MenedzerMenu : MonoBehaviour
         menu_wyj.SetActive(true);
     }
 
-    public void TablicaWynikow()
+    public void TablicaWynikowM()
     {
         menuInGame.SetActive(false);
         TW.SetActive(true);
@@ -291,6 +296,26 @@ public class MenedzerMenu : MonoBehaviour
         return false;
     }
 
+    public void Czysc()
+    {
+
+        if (gotowy_do_czyszcz == false)
+        {
+            Debug.Log("Lista Pusta");
+        }
+        else
+        {
+            int[] TablicaWynikow = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            PlayerPrefsX.SetIntArray("TablicaWynikow", TablicaWynikow);
+
+
+            string[] TablicaWynikowNick = new string[10] { "", "", "", "", "", "", "", "", "", "" };
+
+            PlayerPrefsX.SetStringArray("TablicaWynikowNick", TablicaWynikowNick);
+       } 
+   }
+
     void helpMenuUpdate()
     {
         if (Input.GetKey(KeyCode.F1) && canBePressed())
@@ -310,6 +335,9 @@ public class MenedzerMenu : MonoBehaviour
     }
     void Update()
     {
+        TablicaWynikow = PlayerPrefsX.GetIntArray("TablicaWynikow");
+        TablicaWynikowNick = PlayerPrefsX.GetStringArray("TablicaWynikowNick");
+
         if (scena.name != naz)
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !helpMenu.activeSelf)
@@ -342,14 +370,32 @@ public class MenedzerMenu : MonoBehaviour
             }
 
             timer += Time.deltaTime;
-        }
+        
         if (timer > 0.5f)
         {
             rozp.interactable = true;
         }
 
+            if (TablicaWynikow[0] == 0 || TablicaWynikowNick[0] == "")
+            {
+                gotowy_do_czyszcz = false;
+            }
+            else
+            {
+                gotowy_do_czyszcz = true;
+            }
 
+
+            if (gotowy_do_czyszcz == true)
+        {
+            czysc.interactable = true;
+        }
+        else
+        {
+            czysc.interactable = false;
+        }
     }
+}
 
     
     [Serializable]
