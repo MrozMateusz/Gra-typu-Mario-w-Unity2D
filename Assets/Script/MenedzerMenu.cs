@@ -337,6 +337,15 @@ public class MenedzerMenu : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+
+    public void PowrotZPomocy()
+    {
+        menuInGame.SetActive(true);
+        helpMenu.SetActive(false);
+
+    }
+
+
     void Update()
     {
         TablicaWynikow = PlayerPrefsX.GetIntArray("TablicaWynikow");

@@ -1,25 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Zycie : MonoBehaviour
 {
     static public int zycie = 3;
     public GameObject kon;
     public int mozKon = 1;
+    public Text text;
 
     // Start is called before the first frame update
     void Start()
     {
         zycie = PlayerPrefs.GetInt("ILZY");
-        this.GetComponent<MeshRenderer>();
+       // this.GetComponent<Text>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.GetComponent<TextMesh>().text = zycie.ToString();
+        text.text = zycie.ToString();
 
         PlayerPrefs.SetInt("ILZY", zycie);
         

@@ -17,6 +17,7 @@ public class KoniecGry : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0.0f;
 
         wynikLicz.text = punktacja.wynik.ToString();
         czasLicz.text = CzasGry.CzasR;
