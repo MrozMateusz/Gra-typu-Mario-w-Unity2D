@@ -31,6 +31,7 @@ public class MenedzerMenu : MonoBehaviour
     float timer = 0.0f;
     bool gotowy_do_czyszcz = false;
     public static bool wyczyszczony = false;
+    public bool blokada = true;
 
     int[] TablicaWynikow = new int[10];
     string[] TablicaWynikowNick = new string[10];
@@ -67,10 +68,16 @@ public class MenedzerMenu : MonoBehaviour
         rozp.interactable = false;
         nick = input.text;
 
-        
+        if (input.text.Length > 0)
+        {
+
             PlayerPrefs.SetString("NicK", nick);
-        
-        
+            blokada = false;
+        }
+        else
+        {
+            blokada = true;
+        }
         
     }
     
@@ -163,7 +170,7 @@ public class MenedzerMenu : MonoBehaviour
 
     void Start()
     {
-
+        
         if (PlayerPrefsX.GetIntArray("TablicaWynikow", 0, 10)[0] == 0) {
 
             int[] TablicaWynikow = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -427,14 +434,14 @@ public class MenedzerMenu : MonoBehaviour
             czysc.interactable = false;
         }
 
-        if (nick != null)
+        if (blokada == true)
         {
-            rozp.interactable = true;
+            timer = 0.0f;
+            rozp.interactable = false;
         }
         else
         {
-                timer = 0.0f;
-                rozp.interactable = false;
+                rozp.interactable = true;
         }
 
         if(TablicaWynikow[0] == 0 || TablicaWynikowNick[0] == "")

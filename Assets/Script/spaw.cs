@@ -111,12 +111,12 @@ public class Spaw : MonoBehaviour
 
             if (Player.tag == "Moneta")
             {
-                punktacja.wynik += 1;
+                punktacja.wynik++;
             }
 
             if (Player.tag == "ZycieUP")
             {
-                Zycie.zycie += 1;
+                Zycie.zycie ++;
             }
         }
     }
