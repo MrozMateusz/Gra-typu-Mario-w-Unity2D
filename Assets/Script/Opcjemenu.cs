@@ -59,7 +59,8 @@ public class Opcjemenu : MonoBehaviour
             FullScreen.isOn = false;
         }
         glosnosc.value = AudioListener.volume;
-        
+
+
     }
     public void FullScreenZmiana()
     {

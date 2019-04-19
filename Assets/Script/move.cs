@@ -59,29 +59,41 @@ public class move : MonoBehaviour
 
     private void klaw()
     {
-        if (zranienie != true){
-            DotykaZiemii = Physics2D.OverlapCircle(ziemia.position, rozmiarZiemii, LayerZiemii);
-            float Horizontal = Input.GetAxis("Horizontal");
+        if (zranienie == false)
+        {
+            if (Time.timeScale != 0.0f)
+            {
+                DotykaZiemii = Physics2D.OverlapCircle(ziemia.position, rozmiarZiemii, LayerZiemii);
+                float Horizontal = Input.GetAxis("Horizontal");
 
-            if (Horizontal > 0f)
-            {
-                rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
-                transform.localScale = new Vector2(0.8372915f, 0.6437907f);
-            }
-            else if (Horizontal < 0f)
-            {
-                rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
-                transform.localScale = new Vector2(-0.8372915f, 0.6437907f);
+                if (Horizontal > 0f)
+                {
+                    rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
+                    transform.localScale = new Vector2(0.8372915f, 0.6437907f);
+                }
+                else if (Horizontal < 0f)
+                {
+                    rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
+                    transform.localScale = new Vector2(-0.8372915f, 0.6437907f);
+                }
+                else
+                {
+                    rig2.velocity = new Vector2(0, rig2.velocity.y);
+                }
+
+                if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
+                {
+                    rig2.velocity = new Vector2(rig2.velocity.x, skok);
+                }
             }
             else
             {
                 rig2.velocity = new Vector2(0, rig2.velocity.y);
             }
-
-            if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
-            {
-                rig2.velocity = new Vector2(rig2.velocity.x, skok);
-            }
+        }
+        else
+        {
+            rig2.velocity = new Vector2(0, rig2.velocity.y);
         }
         Animacja.SetFloat("Predkosc", Mathf.Abs(rig2.velocity.x));
         Animacja.SetBool("NaZiemii", !DotykaZiemii);

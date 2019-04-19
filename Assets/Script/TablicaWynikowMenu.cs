@@ -18,7 +18,24 @@ public class TablicaWynikowMenu : MonoBehaviour
     int[] TablicaWynikow = new int[10];
     string[] TablicaWynikowNick = new string[10];
 
-    // Start is called before the first frame update
+    private void Start()
+    {
+        if(MenedzerMenu.wyczyszczony == true)
+        {
+            tekstWynikowtab0.text = "";
+            tekstWynikowtab1.text = "";
+            tekstWynikowtab2.text = "";
+            tekstWynikowtab3.text = "";
+            tekstWynikowtab4.text = "";
+            tekstWynikowtab5.text = "";
+            tekstWynikowtab6.text = "";
+            tekstWynikowtab7.text = "";
+            tekstWynikowtab8.text = "";
+            tekstWynikowtab9.text = "";
+        }
+    }
+
+
     void Update()
     {
         TablicaWynikow = PlayerPrefsX.GetIntArray("TablicaWynikow");
@@ -31,21 +48,7 @@ public class TablicaWynikowMenu : MonoBehaviour
         else
         {
             tekstWynikowtab0.text = "";
-            /* for (int i = 0; TablicaWynikow[i] != 0; i++)
-             {
-                 for (int j = 0; TablicaWynikowNick[j] != null; j++)
-                 {
-                     tekstWynikowtab.text += (i + 1) + " . " + TablicaWynikowNick[j] + " . " + TablicaWynikow[i] + " Pkt." + System.Environment.NewLine;
-                     if ( j == 9)
-                     {
-                         break;
-                     }
 
-                 }
-                     if (i == 9)
-                     {
-                         break;
-                     }*/
             tekstWynikowtab0.text += "1" + " . " + TablicaWynikowNick[0] + " . " + TablicaWynikow[0] + " Pkt." + System.Environment.NewLine;
             tekstWynikowtab1.text += "2" + " . " + TablicaWynikowNick[1] + " . " + TablicaWynikow[1] + " Pkt." + System.Environment.NewLine;
             tekstWynikowtab2.text += "3" + " . " + TablicaWynikowNick[2] + " . " + TablicaWynikow[2] + " Pkt." + System.Environment.NewLine;
@@ -102,6 +105,4 @@ public class TablicaWynikowMenu : MonoBehaviour
 
         }
     }
-    //}
-//}
 

@@ -21,7 +21,15 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        gm = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject mg in gm)
+            {
+                rig2d = GetComponent<Rigidbody2D>();
+            }
+            if(gm == null)
+            {
+                Debug.Log("koniec przeciwników");
+            }
     }
 
     // Update is called once per frame
@@ -29,24 +37,13 @@ public class EnemyScript : MonoBehaviour
     {
 
  
-        if (scena.name == naz)
-        {
-            Debug.Log("Zla scena. Poruszanie wylaczone!");
-        }
-        else
-        {
+       
             //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
+            //punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
 
 
-            punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
-            
-            gm = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject mg in gm)
-            {
-                rig2d = GetComponent<Rigidbody2D>();
-            }
-        }
+            //punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
+        
 
 
             scena = SceneManager.GetActiveScene();
@@ -75,45 +72,50 @@ public class EnemyScript : MonoBehaviour
              this.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, this.transform.position.y, this.transform.position.z), predkosc * Time.deltaTime);
          }
          else*/
-        if (move.zranienie != true)
+        if (move.zranienie == false)
         {
-           
             if (zmiana == true)
-            {
-                rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
-                this.transform.localScale = new Vector3(-0.5791352f, 0.567311f, 1f);
+                {
+                    rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
+                    this.transform.localScale = new Vector3(-0.5791352f, 0.567311f, 1f);
 
-            }
-            else
-            {
-                rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
-                this.transform.localScale = new Vector3(0.5791352f, 0.567311f, 1f);
+                }
+                else
+                {
+                    rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
+                    this.transform.localScale = new Vector3(0.5791352f, 0.567311f, 1f);
 
-            }
-
+                }
+ 
+        }
+        else
+        {
+            rig2d.velocity = new Vector2(0, rig2d.velocity.y);
         }
        
 
     }
 
-   /* private bool isBetween(Transform gameObject, Transform positio1, Transform position2)
-    {
-        if((gameObject.transform.position.x < position2.position.x) && (gameObject.transform.position.x > positio1.position.x))
-        {
-            return true;
-        }
+    /* private bool isBetween(Transform gameObject, Transform positio1, Transform position2)
+     {
+         if((gameObject.transform.position.x < position2.position.x) && (gameObject.transform.position.x > positio1.position.x))
+         {
+             return true;
+         }
 
-        return false;
-    }*/
+         return false;
+     }*/
 
     private void OnTriggerEnter2D(Collider2D kolizja)
     {
-        if (scena.name == naz)
+        if (gm != null)
         {
-            Debug.Log("Zla scena. Poruszanie wylaczone!");
-        }
-        else 
-        {
+            if (scena.name == naz)
+            {
+                Debug.Log("Zla scena. Poruszanie wylaczone!");
+            }
+            else
+            {
                 if (kolizja.tag == "Start")
                 {
                     zmiana = true;
@@ -124,13 +126,15 @@ public class EnemyScript : MonoBehaviour
                 {
                     zmiana = false;
                 }
-        }
-        if (kolizja.tag == "Player")
-        {
-            Destroy(kolizja.gameObject);
-            zniszcz = true;
-        }
+            }
+            if (kolizja.tag == "Player")
+            {
+                Destroy(this.gameObject);
+                zniszcz = true;
+                punktacja.wynik += 1;
+            }
 
 
+        }
     }
 }

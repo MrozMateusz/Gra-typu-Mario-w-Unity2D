@@ -64,7 +64,7 @@ public class Spaw : MonoBehaviour
     {
         if (Player.gameObject.tag == "Enemy" && EnemyScript.zniszcz == false)
         {
-            if (move.zranienie != true)
+            if (zranienie != 1)
             {
                 timer = 0.0f;
                 zranienie = 1;
@@ -78,7 +78,7 @@ public class Spaw : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D Player)
     {
-        if (move.zranienie != true)
+        if (zranienie != 1)
         {
             if (Player.tag == "Fall")
             {
@@ -108,6 +108,7 @@ public class Spaw : MonoBehaviour
                 zranienie = 1;
                 uderzenie = 1;
                 Zycie.zycie -= 1;
+
             }
 
             if (Player.tag == "Moneta")

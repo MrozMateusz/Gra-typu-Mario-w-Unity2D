@@ -22,12 +22,14 @@ public class MenedzerMenu : MonoBehaviour
     readonly string naz = "Menu";
     public InputField input;
     public GameObject kon;
+    public GameObject helpPocz;
     public Button btkon;
     public Button rozp;
     public Button czysc;
     string nick;
     float timer = 0.0f;
     bool gotowy_do_czyszcz = false;
+    public static bool wyczyszczony = false;
 
     int[] TablicaWynikow = new int[10];
     string[] TablicaWynikowNick = new string[10];
@@ -73,8 +75,7 @@ public class MenedzerMenu : MonoBehaviour
     
     public void WejdzDoGry(string Plansza1)
     {
-        if (nick != null)
-         {
+
         SceneManager.LoadScene(Plansza1);
         PlayerPrefs.SetFloat("PozX", -10.77f);
         PlayerPrefs.SetFloat("PozY", -2.86f);
@@ -84,12 +85,6 @@ public class MenedzerMenu : MonoBehaviour
         PlayerPrefs.GetString("NicK");
             rozp.interactable = true;
    
-    }
-    else
-    {
-            timer = 0.0f;
-        rozp.interactable = false;
-        }
     }
 
     public void WrocDoMenu()
@@ -296,6 +291,12 @@ public class MenedzerMenu : MonoBehaviour
         return false;
     }
 
+    public void PomocMG()
+    {
+        menuInGame.SetActive(false);
+        helpMenu.SetActive(true);
+    }
+
     public void Czysc()
     {
 
@@ -313,12 +314,14 @@ public class MenedzerMenu : MonoBehaviour
             string[] TablicaWynikowNick = new string[10] { "", "", "", "", "", "", "", "", "", "" };
 
             PlayerPrefsX.SetStringArray("TablicaWynikowNick", TablicaWynikowNick);
+            timer = 0.0f;
+            wyczyszczony = true;
        } 
    }
 
     void helpMenuUpdate()
     {
-        if (Input.GetKey(KeyCode.F1) && canBePressed())
+        if (Input.GetKey(KeyCode.F1) && canBePressed() && !helpPocz.activeSelf)
         {
 
             helpMenu.SetActive(true);
@@ -340,8 +343,13 @@ public class MenedzerMenu : MonoBehaviour
 
         if (scena.name != naz)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !helpMenu.activeSelf)
+            if (Input.GetKeyDown(KeyCode.Escape) && helpPocz.activeSelf)
             {
+                helpPocz.SetActive(false);
+
+            }
+                if (Input.GetKeyDown(KeyCode.Escape) && !helpMenu.activeSelf && !helpPocz.activeSelf)
+               {
                 menuInGame.SetActive(true);
                 menuInGameCanvas.enabled = !menuInGameCanvas.enabled;
                 if (menuInGameCanvas.enabled)
@@ -356,6 +364,16 @@ public class MenedzerMenu : MonoBehaviour
                 }
             }
             helpMenuUpdate();
+
+            if (helpPocz.activeSelf)
+            {
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+            }
+
         }
         else
         {
@@ -371,7 +389,7 @@ public class MenedzerMenu : MonoBehaviour
 
             timer += Time.deltaTime;
         
-        if (timer > 0.5f)
+        if (timer > 0.02f)
         {
             rozp.interactable = true;
         }
@@ -385,14 +403,28 @@ public class MenedzerMenu : MonoBehaviour
                 gotowy_do_czyszcz = true;
             }
 
+            if(timer > 0.5f)
+            {
+                wyczyszczony = false;
+            }
 
-            if (gotowy_do_czyszcz == true)
+        if (gotowy_do_czyszcz == true)
         {
             czysc.interactable = true;
         }
         else
         {
             czysc.interactable = false;
+        }
+
+        if (nick != null)
+        {
+            rozp.interactable = true;
+        }
+        else
+        {
+                timer = 0.0f;
+                rozp.interactable = false;
         }
     }
 }
@@ -401,7 +433,7 @@ public class MenedzerMenu : MonoBehaviour
     [Serializable]
     class Save
     {
-        Resolution[] res;
+        //Resolution[] res;
         public int refRate;
         public int wysEkranu;
         public int szerEkranu;
