@@ -10277,6 +10277,11 @@ PrefabInstance:
       propertyPath: helpMenu
       value: 
       objectReference: {fileID: 1487307050}
+    - target: {fileID: 2463186772235958411, guid: 56e7b3936ccf16743912327bbf76ecb7,
+        type: 3}
+      propertyPath: btTaWy
+      value: 
+      objectReference: {fileID: 1377534284}
     - target: {fileID: 2463186772235958408, guid: 56e7b3936ccf16743912327bbf76ecb7,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -26,6 +26,7 @@ public class MenedzerMenu : MonoBehaviour
     public Button btkon;
     public Button rozp;
     public Button czysc;
+    public Button btTaWy;
     string nick;
     float timer = 0.0f;
     bool gotowy_do_czyszcz = false;
@@ -426,6 +427,15 @@ public class MenedzerMenu : MonoBehaviour
                 timer = 0.0f;
                 rozp.interactable = false;
         }
+
+        if(TablicaWynikow[0] == 0 || TablicaWynikowNick[0] == "")
+            {
+                btTaWy.interactable = false;
+            }
+            else
+            {
+                btTaWy.interactable = true;
+            }
     }
 }
 

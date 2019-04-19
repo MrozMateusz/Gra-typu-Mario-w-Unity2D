@@ -43,10 +43,10 @@ public class Spaw : MonoBehaviour
         timer += Time.deltaTime;
         if (uderzenie == 1)
         {
-            if (timer > 1.45f)
+            if (timer > 1.25f)
             {
                 transform.position = miejsceRespawnu;
-                if (timer > 1.9f)
+                if (timer > 1.77f)
                 {
                     zranienie = 0;
                     uderzenie = 0;
@@ -54,9 +54,7 @@ public class Spaw : MonoBehaviour
                 }
             }
         }
-
-
-        PlayerPrefs.SetInt("Zran", zranienie); 
+            PlayerPrefs.SetInt("Zran", zranienie); 
 
     }
 

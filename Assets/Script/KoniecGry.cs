@@ -52,27 +52,6 @@ public class KoniecGry : MonoBehaviour
         PlayerPrefsX.SetIntArray("TablicaWynikow", TablicaWynikow);
         PlayerPrefsX.SetStringArray("TablicaWynikowNick", TablicaWynikowNick);
 
-       
-          //  for (int k = 0; k < 10; k++)
-           // {
-              //  if (wynik > TablicaWynikow[k])
-              //  {
-                    /*for (int l = 9; l > k; l--)
-                    {
-                        
-                    }
-                    */
-                    
-                    //break;
-              //  }
-         //   }
-       // }
-        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
