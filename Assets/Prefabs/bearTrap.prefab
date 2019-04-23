@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8155936967376621136}
   - component: {fileID: 8155936967376621135}
   - component: {fileID: 8155936967376621132}
+  - component: {fileID: 4919375241279219374}
   m_Layer: 0
   m_Name: bearTrap
   m_TagString: Trap
@@ -126,7 +127,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0055936426, y: -0.04598243}
+  m_Offset: {x: 0.0037372783, y: -0.03790763}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0, z: 0.04, w: 0.08}
     pivot: {x: 0.5, y: 0.5}
@@ -137,5 +138,31 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15057063, y: 0.06895315}
+  m_Size: {x: 0.20625724, y: 0.14252394}
+  m_EdgeRadius: 0
+--- !u!61 &4919375241279219374
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8155936967376621139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0034973659, y: -0.039347738}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0, z: 0.04, w: 0.08}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.29, y: 0.22}
+    newSize: {x: 0.29, y: 0.22}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.19755882, y: 0.14130452}
   m_EdgeRadius: 0

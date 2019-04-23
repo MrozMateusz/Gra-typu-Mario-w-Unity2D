@@ -118,7 +118,6 @@ public class Spaw : MonoBehaviour
             }
             if (Player.tag == "Trap")
             {
-
                 timer = 0.0f;
                 zranienie = 1;
                 uderzenie = 1;
