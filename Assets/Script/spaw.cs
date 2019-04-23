@@ -6,7 +6,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 
-public class spaw : MonoBehaviour
+public class Spaw : MonoBehaviour
 {
     Vector3 miejsceRespawnu;
     private GameObject respawnPlace;
