@@ -103,8 +103,7 @@ public class spaw : MonoBehaviour
 
             if (Player.tag == "Checkpoint")
             {
-                if (zmianaCheckpointa.zmienione == false)
-                {
+               
                     miejsceRespawnu = Player.transform.position;
 
                     scena = SceneManager.GetActiveScene().buildIndex;
@@ -113,9 +112,9 @@ public class spaw : MonoBehaviour
                     PlayerPrefs.SetFloat("PolY", Player.transform.position.y);
                     PlayerPrefs.SetFloat("PolZ", Player.transform.position.z);
                     PlayerPrefs.Save();
-
+               
                     dzwiekCheck.Play();
-                }
+                
             }
             if (Player.tag == "Trap")
             {

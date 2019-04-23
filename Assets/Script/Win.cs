@@ -13,15 +13,12 @@ public class Win : MonoBehaviour
     void Start()
     {
         scena = SceneManager.GetActiveScene();
+        mozKonWyg = 1;
+        PlayerPrefs.SetInt("MozKonWyg", mozKonWyg);
     }
 
-    private void Update()
-    {
-        if (kon.activeSelf)
-        {
-            Time.timeScale = 0.0f;
-        }
-        
+    void Update()
+    {  
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,6 +30,7 @@ public class Win : MonoBehaviour
                 kon.SetActive(true);
                 Cursor.visible = true;
                 mozKonWyg = 0;
+                Time.timeScale = 0.0f;
                 PlayerPrefs.SetInt("MozKonWyg", mozKonWyg);
             }
             else
