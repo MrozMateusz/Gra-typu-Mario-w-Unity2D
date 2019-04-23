@@ -8,7 +8,7 @@ public class zmianaCheckpointa : MonoBehaviour
     public Sprite czerownaFlaga;
     public Sprite zielonaFlaga;
     private SpriteRenderer flaga;
-    public bool zmienione;
+    public static bool zmienione = false;
     // Start is called before the first frame update
     void Start()
     {

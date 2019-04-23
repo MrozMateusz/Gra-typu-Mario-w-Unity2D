@@ -19,6 +19,8 @@ public class move : MonoBehaviour
     public GameObject bufsIm;
     readonly string naz="Menu";
     float timer = 0.0f;
+    public AudioSource skokDz;
+    public AudioSource dzwiekBuff;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +86,7 @@ public class move : MonoBehaviour
                 if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
                 {
                     rig2.velocity = new Vector2(rig2.velocity.x, skok);
+                    skokDz.Play();
                 }
             }
             else
@@ -107,6 +110,8 @@ public class move : MonoBehaviour
             skok = 8;
             timer = 0.0f;
             bufsIm.SetActive(true);
+            dzwiekBuff.Play();
+
         }
     }
 

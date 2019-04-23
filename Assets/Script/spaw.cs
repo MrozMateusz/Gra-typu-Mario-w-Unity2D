@@ -13,10 +13,16 @@ public class Spaw : MonoBehaviour
     private int scena;
     private Animator animacja;
     float timer = 0.0f;
+    float timerA = 0.0f;
     public int zranienie = 0;
     public int uderzenie = 0;
+    bool zebrane = false;
 
-    public GameObject part;
+    public AudioSource dzwiekMon;
+    public AudioSource dzwiekHealth;
+    public AudioSource dzwiekCheck;
+    public AudioSource FallDz;
+
     static public float czasGry = 0.0f;
    
 
@@ -36,11 +42,13 @@ public class Spaw : MonoBehaviour
             this.transform.position = miejsceRespawnu;
         }
     }
-   
+
     private void Update()
     {
         czasGry += Time.deltaTime;
         timer += Time.deltaTime;
+        timerA += Time.deltaTime;
+
         if (uderzenie == 1)
         {
             if (timer > 1.25f)
@@ -55,6 +63,11 @@ public class Spaw : MonoBehaviour
             }
         }
             PlayerPrefs.SetInt("Zran", zranienie); 
+
+        if(timerA > 0.05f)
+        {
+            zebrane = false;
+        }
 
     }
 
@@ -84,20 +97,25 @@ public class Spaw : MonoBehaviour
                 zranienie = 1;
                 uderzenie = 1;
                 Zycie.zycie -= 1;
+                FallDz.Play();
             }
 
 
             if (Player.tag == "Checkpoint")
             {
-                miejsceRespawnu = Player.transform.position;
+                if (zmianaCheckpointa.zmienione == false)
+                {
+                    miejsceRespawnu = Player.transform.position;
 
-                scena = SceneManager.GetActiveScene().buildIndex;
-                PlayerPrefs.SetInt("ZapisanaPlansza", scena);
-                PlayerPrefs.SetFloat("PolX", Player.transform.position.x);
-                PlayerPrefs.SetFloat("PolY", Player.transform.position.y);
-                PlayerPrefs.SetFloat("PolZ", Player.transform.position.z);
-                PlayerPrefs.Save();
+                    scena = SceneManager.GetActiveScene().buildIndex;
+                    PlayerPrefs.SetInt("ZapisanaPlansza", scena);
+                    PlayerPrefs.SetFloat("PolX", Player.transform.position.x);
+                    PlayerPrefs.SetFloat("PolY", Player.transform.position.y);
+                    PlayerPrefs.SetFloat("PolZ", Player.transform.position.z);
+                    PlayerPrefs.Save();
 
+                    dzwiekCheck.Play();
+                }
             }
             if (Player.tag == "Trap")
             {
@@ -111,12 +129,23 @@ public class Spaw : MonoBehaviour
 
             if (Player.tag == "Moneta")
             {
-                punktacja.wynik++;
+                if (zebrane == false)
+                {
+                    punktacja.wynik++;
+                    zebrane = true;
+                    dzwiekMon.Play();
+                }
+
             }
 
             if (Player.tag == "ZycieUP")
             {
-                Zycie.zycie ++;
+                if (zebrane == false)
+                {
+                    Zycie.zycie++;
+                    zebrane = true;
+                    dzwiekHealth.Play();
+                }
             }
         }
     }

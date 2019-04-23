@@ -46,6 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7328128309028583006}
   - component: {fileID: 6126546145624121874}
+  - component: {fileID: 4203807885663556367}
   m_Layer: 8
   m_Name: grassLeft
   m_TagString: Untagged
@@ -115,6 +116,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &4203807885663556367
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287650979228894854}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.7}
+    newSize: {x: 0.7, y: 0.7}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.30561733, y: 0.34744775}
+      - {x: -0.32702923, y: 0.32447731}
+      - {x: -0.34924793, y: 0.29890692}
+      - {x: -0.3509016, y: 0.0004168749}
+      - {x: -0.29315853, y: -0.051211715}
+      - {x: 0.3473997, y: -0.049995065}
+      - {x: 0.35, y: 0.35}
 --- !u!1 &3521511782829114452
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6036833261074094945}
   - component: {fileID: 6903101906627234747}
+  - component: {fileID: 5605097006379585566}
   m_Layer: 8
   m_Name: grassRight
   m_TagString: Untagged
@@ -512,6 +546,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &5605097006379585566
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6966554995734442885}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.7, y: 0.7}
+    newSize: {x: 0.7, y: 0.7}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.35, y: 0.35}
+      - {x: -0.35255182, y: -0.053835392}
+      - {x: 0.29914916, y: -0.049581766}
+      - {x: 0.35170043, y: 0.009134769}
+      - {x: 0.3491484, y: 0.29873085}
+      - {x: 0.32829344, y: 0.33073235}
+      - {x: 0.3004328, y: 0.3491497}
 --- !u!1 &8960817304641336290
 GameObject:
   m_ObjectHideFlags: 0

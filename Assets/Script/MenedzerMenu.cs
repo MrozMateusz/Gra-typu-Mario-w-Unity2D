@@ -394,7 +394,7 @@ public class MenedzerMenu : MonoBehaviour
         }
         else
         {
-            if (PlayerPrefs.GetInt("MozKon") == 1)
+            if (PlayerPrefs.GetInt("MozKon") == 1 && PlayerPrefs.GetInt("MozKonWyg") == 1)
             {
                 btkon.interactable = true;
             }
