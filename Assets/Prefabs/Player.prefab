@@ -240,7 +240,6 @@ MonoBehaviour:
   bufsIm: {fileID: 0}
   skokDz: {fileID: 0}
   dzwiekBuff: {fileID: 0}
-  FallDz: {fileID: 0}
 --- !u!114 &1878624460624330728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +784,7 @@ GameObject:
   - component: {fileID: 5778121430588126382}
   - component: {fileID: 3428870977420268762}
   m_Layer: 0
-  m_Name: Retro_8-Bit_Game-Powerup_Achievement_04
+  m_Name: SkokDz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -815,8 +814,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8237bd50b12d70c42930ed93b075596b, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: e8472406d646cd24c9aafdbad49c8e35, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

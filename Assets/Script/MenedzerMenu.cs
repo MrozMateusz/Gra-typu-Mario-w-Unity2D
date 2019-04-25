@@ -32,6 +32,7 @@ public class MenedzerMenu : MonoBehaviour
     bool gotowy_do_czyszcz = false;
     public static bool wyczyszczony = false;
     public bool blokada = true;
+    public static bool gra_od_nowa = false;
 
     int[] TablicaWynikow = new int[10];
     string[] TablicaWynikowNick = new string[10];
@@ -61,6 +62,7 @@ public class MenedzerMenu : MonoBehaviour
     public void NowaGra()
     {
         WDG.SetActive(true);
+        menuInGame.SetActive(false);
     }
 
     public void wpisz()
@@ -98,6 +100,7 @@ public class MenedzerMenu : MonoBehaviour
     public void WrocDoMenu()
     {
         WDG.SetActive(false);
+        menuInGame.SetActive(true);
         Time.timeScale = 1;
     }
 
@@ -252,6 +255,7 @@ public class MenedzerMenu : MonoBehaviour
         CzasGry.minuty = 0.0f;
         CzasGry.sekundy = 0.0f;
         Time.timeScale = 1;
+        gra_od_nowa = true;
     }
  
     public void Zapisz()
@@ -357,6 +361,8 @@ public class MenedzerMenu : MonoBehaviour
     {
         TablicaWynikow = PlayerPrefsX.GetIntArray("TablicaWynikow");
         TablicaWynikowNick = PlayerPrefsX.GetStringArray("TablicaWynikowNick");
+        PlayerPrefsX.SetBool("FS", fs);
+
 
         if (scena.name != naz)
         {
@@ -459,7 +465,6 @@ public class MenedzerMenu : MonoBehaviour
     [Serializable]
     class Save
     {
-        //Resolution[] res;
         public int refRate;
         public int wysEkranu;
         public int szerEkranu;
@@ -478,6 +483,7 @@ public class MenedzerMenu : MonoBehaviour
         public string nick;
         public int wynik;
         public int ilZycie;
+        //public int poziomTr;
     }
 
 }

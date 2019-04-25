@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Plansza2.unity
+    guid: f50a0f9c1c4918548b1cbd375901032f
   m_configObjects: {}
