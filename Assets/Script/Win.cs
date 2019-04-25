@@ -8,7 +8,7 @@ public class Win : MonoBehaviour
     public Scene scena;
     public GameObject kon;
     public int mozKonWyg = 1;
-    public int x;
+    public int x; // można x do kamery dodać i jej nie niszczyć przy przejściu
     public float timerZ = 0.0f;
     public static bool zmiana = false;
 
@@ -19,6 +19,10 @@ public class Win : MonoBehaviour
         mozKonWyg = 1;
         PlayerPrefs.SetInt("MozKonWyg", mozKonWyg);
 
+        if (zmiana == true)
+        {
+            x++;
+        }
     }
 
     void Update()
@@ -36,27 +40,24 @@ public class Win : MonoBehaviour
             Time.timeScale = 1.0f;
         }
 
-        if(timerZ > 0.5f)
-        {
-            if (zmiana == true)
-            {
-                x++;
-            }
-            zmiana = false;
-            
+        
+
+        if (timerZ > 0.5f)
+        { 
+            zmiana = false; 
         }
+        Debug.Log(x);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
             
-            if (scena.buildIndex != 2)
+            if (scena.buildIndex != 3)
             {
                 SceneManager.LoadScene(x);
                 zmiana = true;
                 timerZ = 0.0f;
-                
 
             }
             else

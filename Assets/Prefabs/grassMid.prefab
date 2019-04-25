@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3730630625642823067}
   - component: {fileID: 7102362365721691310}
   - component: {fileID: 1103225422979386170}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grassMid
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

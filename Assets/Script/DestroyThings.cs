@@ -14,7 +14,6 @@ public class DestroyThings : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            Debug.Log("kolizja z playerem");
             Destroy(this.gameObject);
         }
 

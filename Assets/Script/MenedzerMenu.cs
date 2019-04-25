@@ -45,13 +45,14 @@ public class MenedzerMenu : MonoBehaviour
         PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
+        PlayerPrefsX.SetBool("FS", Screen.fullScreen);
 
         if (File.Exists(Application.persistentDataPath + "/UstawieniaDomyslne.d"))
         {
             BinaryFormatter Form = new BinaryFormatter();
             FileStream zapisUst = File.Open(Application.persistentDataPath + "/UstawieniaDomyslne.d", FileMode.Open);
             Save ustawienia = (Save)Form.Deserialize(zapisUst);
-            Screen.SetResolution(ustawienia.szerEkranu, ustawienia.wysEkranu, fs);
+            Screen.SetResolution(ustawienia.szerEkranu, ustawienia.wysEkranu, ustawienia.fullscreen);
             AudioListener.volume = ustawienia.Glosnosc;
 
             zapisUst.Close();
@@ -263,14 +264,14 @@ public class MenedzerMenu : MonoBehaviour
         PlayerPrefs.SetInt("rozdzielczoscSzer", Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
         PlayerPrefs.SetInt("RefRat", roz.refreshRate);
-        fs = Screen.fullScreen;
+        PlayerPrefsX.SetBool("FS",Screen.fullScreen);
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
 
         BinaryFormatter Form = new BinaryFormatter();
         FileStream zapisUst = File.Create(Application.persistentDataPath + "/UstawieniaDomyslne.d");
         Save ustawienia = new Save();
 
-        ustawienia.fullscreen = fs;
+        ustawienia.fullscreen = PlayerPrefsX.GetBool("FS");
         ustawienia.szerEkranu = PlayerPrefs.GetInt("rozdzielczoscSzer");
         ustawienia.wysEkranu = PlayerPrefs.GetInt("rozdzielczoscWys");
         ustawienia.refRate = PlayerPrefs.GetInt("RefRat");
@@ -286,7 +287,7 @@ public class MenedzerMenu : MonoBehaviour
 
     public void NieZapisuj()
     {
-        Screen.SetResolution(PlayerPrefs.GetInt("rozdzielczoscSzer"), PlayerPrefs.GetInt("rozdzielczoscWys"), Screen.fullScreen = fs, PlayerPrefs.GetInt("RefRat"));
+        Screen.SetResolution(PlayerPrefs.GetInt("rozdzielczoscSzer"), PlayerPrefs.GetInt("rozdzielczoscWys"), PlayerPrefsX.GetBool("FS"), PlayerPrefs.GetInt("RefRat"));
         AudioListener.volume=PlayerPrefs.GetFloat("Glosnosc");
         zapis_opcji.SetActive(false);
         menuInGame.SetActive(true);
@@ -361,8 +362,6 @@ public class MenedzerMenu : MonoBehaviour
     {
         TablicaWynikow = PlayerPrefsX.GetIntArray("TablicaWynikow");
         TablicaWynikowNick = PlayerPrefsX.GetStringArray("TablicaWynikowNick");
-        PlayerPrefsX.SetBool("FS", fs);
-
 
         if (scena.name != naz)
         {

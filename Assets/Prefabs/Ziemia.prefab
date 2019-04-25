@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4482232977468702875}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ziemia
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 4203807885663556367}
   m_Layer: 8
   m_Name: grassLeft
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 3442567252902317698}
   m_Layer: 8
   m_Name: grassMid (1)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 3442567252635110671}
   m_Layer: 8
   m_Name: grassMid (2)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 3442567253391769604}
   m_Layer: 8
   m_Name: grassMid (3)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 5605097006379585566}
   m_Layer: 8
   m_Name: grassRight
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 1842679692541468563}
   m_Layer: 8
   m_Name: grassMid (4)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -21,6 +21,8 @@ public class move : MonoBehaviour
     float timer = 0.0f;
     public AudioSource skokDz;
     public AudioSource dzwiekBuff;
+    public AudioSource FallDz;
+    bool skoczyl = false;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +89,8 @@ public class move : MonoBehaviour
                 {
                     rig2.velocity = new Vector2(rig2.velocity.x, skok);
                     skokDz.Play();
+                    skoczyl = true;
+                    
                 }
             }
             else
@@ -105,6 +109,15 @@ public class move : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(skoczyl == true)
+        {
+            if(collision.tag == "Ziemia")
+            {
+                FallDz.Play();
+                skoczyl = false;
+            }
+        }
+
         if (collision.tag == "Buff")
         {
             skok = 8;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 694405016217927764}
   m_Layer: 8
   m_Name: grassMid
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8495571571929958103}
   m_Layer: 8
   m_Name: malaZiemia
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 1175607986805653500}
   m_Layer: 8
   m_Name: grassLeft
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 7012432268005146082}
   m_Layer: 8
   m_Name: grassRight
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

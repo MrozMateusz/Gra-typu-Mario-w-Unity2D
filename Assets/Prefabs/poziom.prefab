@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 775347846095856865}
   - component: {fileID: 3638595790291491607}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slice33_33
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,9 +89,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8903319280725371241}
   - component: {fileID: 6898944616452010364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slice33_33 (5)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,9 +168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5638543787857644943}
   - component: {fileID: 515896319826786847}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slice33_33 (1)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,9 +247,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6787341234338357625}
   - component: {fileID: 6253540589950955245}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slice33_33 (3)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -325,9 +325,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8089268420120343607}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: poziom
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,9 +362,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7396246921345978716}
   - component: {fileID: 3356882101248982736}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slice33_33 (4)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -442,9 +442,9 @@ GameObject:
   - component: {fileID: 3684127214377846359}
   - component: {fileID: 7777206790703256695}
   - component: {fileID: 4139609421166121987}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: slice33_33 (2)
-  m_TagString: Untagged
+  m_TagString: Ziemia
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

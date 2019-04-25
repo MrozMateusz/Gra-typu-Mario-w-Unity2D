@@ -238,8 +238,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   bufsIm: {fileID: 0}
-  skokDz: {fileID: 0}
-  dzwiekBuff: {fileID: 0}
+  skokDz: {fileID: 3428870977420268762}
+  dzwiekBuff: {fileID: 1567981159765111500}
+  FallDz: {fileID: 7203151239815630036}
 --- !u!114 &1878624460624330728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,10 +255,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zranienie: 0
   uderzenie: 0
-  dzwiekMon: {fileID: 0}
-  dzwiekHealth: {fileID: 0}
-  dzwiekCheck: {fileID: 0}
-  FallDz: {fileID: 0}
+  dzwiekMon: {fileID: 5122798674479854970}
+  dzwiekHealth: {fileID: 7287402675953729338}
+  dzwiekCheck: {fileID: 3914740008975561625}
+  FallDz: {fileID: 7203151239815630036}
 --- !u!50 &8371620792689145788
 Rigidbody2D:
   serializedVersion: 4
