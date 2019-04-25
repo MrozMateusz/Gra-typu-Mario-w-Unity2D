@@ -8,7 +8,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class Spaw : MonoBehaviour
 {
-    Vector3 miejsceRespawnu;
+    public static Vector3 miejsceRespawnu;
+    public static Vector3 poczresp;
     private GameObject respawnPlace;
     private int scena;
     private Animator animacja;
@@ -24,12 +25,10 @@ public class Spaw : MonoBehaviour
     public AudioSource FallDz;
 
     static public float czasGry = 0.0f;
-   
-
 
     void Awake()
     {
-        
+           
            if(PlayerPrefs.GetFloat("PozX")!=0 && PlayerPrefs.GetFloat("PozY") != 0 && PlayerPrefs.GetFloat("PozZ") != 0)
                 {
                     float PX = PlayerPrefs.GetFloat("PozX");
@@ -40,7 +39,26 @@ public class Spaw : MonoBehaviour
         respawnPlace = GameObject.FindGameObjectWithTag("Respawn");
             miejsceRespawnu = respawnPlace.transform.position;
             this.transform.position = miejsceRespawnu;
+
+            poczresp = miejsceRespawnu;
+
+            if(MenedzerMenu.gra_od_nowa == true)
+            {
+                miejsceRespawnu = poczresp;
+                MenedzerMenu.gra_od_nowa = false;
+            }
+           
         }
+
+        if (Win.zmiana == true)
+        {
+            respawnPlace = GameObject.FindGameObjectWithTag("Respawn");
+            miejsceRespawnu = respawnPlace.transform.position;
+            this.transform.position = miejsceRespawnu;
+
+            poczresp = miejsceRespawnu;
+        }
+
     }
 
     private void Update()
