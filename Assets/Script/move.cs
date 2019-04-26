@@ -65,36 +65,45 @@ public class move : MonoBehaviour
     {
         if (zranienie == false)
         {
-            if (Time.timeScale != 0.0f)
+            if (Czas_stop_koniec.czas_zatrzym_koniec == false)
             {
-                DotykaZiemii = Physics2D.OverlapCircle(ziemia.position, rozmiarZiemii, LayerZiemii);
-                float Horizontal = Input.GetAxis("Horizontal");
 
-                if (Horizontal > 0f)
+                if (Win.czas_zatrzym == false)
                 {
-                    rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
-                    transform.localScale = new Vector2(0.8372915f, 0.6437907f);
-                }
-                else if (Horizontal < 0f)
-                {
-                    rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
-                    transform.localScale = new Vector2(-0.8372915f, 0.6437907f);
+                    DotykaZiemii = Physics2D.OverlapCircle(ziemia.position, rozmiarZiemii, LayerZiemii);
+                    float Horizontal = Input.GetAxis("Horizontal");
+
+                    if (Horizontal > 0f)
+                    {
+                        rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
+                        transform.localScale = new Vector2(0.8372915f, 0.6437907f);
+                    }
+                    else if (Horizontal < 0f)
+                    {
+                        rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
+                        transform.localScale = new Vector2(-0.8372915f, 0.6437907f);
+                    }
+                    else
+                    {
+                        rig2.velocity = new Vector2(0, rig2.velocity.y);
+                    }
+                    if (Czas_stop.blok_skok == false)
+                    {
+                        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
+                        {
+                            rig2.velocity = new Vector2(rig2.velocity.x, skok);
+
+                            skokDz.Play();
+
+                            skoczyl = true;
+
+                        }
+                    }
+
                 }
                 else
                 {
                     rig2.velocity = new Vector2(0, rig2.velocity.y);
-                }
-                if (Czas_stop.blok_skok == false)
-                {
-                    if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
-                    {
-                        rig2.velocity = new Vector2(rig2.velocity.x, skok);
-
-                        skokDz.Play();
-
-                        skoczyl = true;
-
-                    }
                 }
             }
             else

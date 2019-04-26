@@ -446,17 +446,6 @@ public class MenedzerMenu : MonoBehaviour
                 
             }
             helpMenuUpdate();
-
-
-            if (helpPocz.activeSelf)
-            {
-                czas_stop = true;
-            }
-            else
-            {
-                czas_stop = false;
-            }
-
         }
         else
         {

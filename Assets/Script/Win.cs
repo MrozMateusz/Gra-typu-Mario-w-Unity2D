@@ -11,6 +11,7 @@ public class Win : MonoBehaviour
     public int x; 
     public float timerZ = 0.0f;
     public static bool zmiana = false;
+    public static bool czas_zatrzym = false;
 
     //Skrypt kończący grę
 
@@ -35,15 +36,14 @@ public class Win : MonoBehaviour
         if (kon.activeSelf)
         {
             Time.timeScale = 0;
-            
+            czas_zatrzym = true;
         }
         else
         {
            Time.timeScale = 1;
-            
+            czas_zatrzym = false;
         }
-
-
+        
         if (timerZ > 0.5f)
         { 
             zmiana = false; 
