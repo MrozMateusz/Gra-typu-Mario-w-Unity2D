@@ -18,13 +18,15 @@ public class Spaw : MonoBehaviour
     public int zranienie = 0;
     public int uderzenie = 0;
     bool zebrane = false;
+    bool zm_kam_przy_spad = false;
+    bool zm_kam_przy_skoku = false;
 
     public AudioSource dzwiekMon;
     public AudioSource dzwiekHealth;
     public AudioSource dzwiekCheck;
     public AudioSource FallDz;
 
-    static public float czasGry = 0.0f;
+    float czasZmianyKamery = 0.0f;
 
     void Awake()
     {
@@ -63,20 +65,35 @@ public class Spaw : MonoBehaviour
 
     private void Update()
     {
-        czasGry += Time.deltaTime;
+        czasZmianyKamery += Time.deltaTime;
         timer += Time.deltaTime;
         timerA += Time.deltaTime;
+
+        if(czasZmianyKamery > 1.5f)
+        {
+            if (zm_kam_przy_skoku == true)
+            {
+                KameraPodazanie.zmiana_sp_por_kam = false;
+                zm_kam_przy_skoku = false;
+            }
+        }
 
         if (uderzenie == 1)
         {
             if (timer > 1.25f)
             {
                 transform.position = miejsceRespawnu;
+
+                    if (zm_kam_przy_spad == true)
+                    {
+                        KameraPodazanie.zmiana_sp_por_kam = true;
+                        zm_kam_przy_spad = false;
+                    }
+
                 if (timer > 1.77f)
                 {
                     zranienie = 0;
-                    uderzenie = 0;
-
+                    uderzenie = 0; 
                 }
             }
         }
@@ -118,6 +135,24 @@ public class Spaw : MonoBehaviour
                 FallDz.Play();
             }
 
+            if (Player.tag == "CameraUP")
+            {
+                if (KameraPodazanie.zmiana_sp_por_kam == true)
+                {
+                    KameraPodazanie.zmiana_sp_por_kam = false;
+                    zm_kam_przy_spad = true;
+                }
+            }
+
+            if (Player.tag == "CameraZbyWysoko")
+            {
+                if (KameraPodazanie.zmiana_sp_por_kam == false)
+                {
+                    KameraPodazanie.zmiana_sp_por_kam = true;
+                    zm_kam_przy_skoku = true;
+                    czasZmianyKamery = 0.0f;
+                }
+            }
 
             if (Player.tag == "Checkpoint")
             {

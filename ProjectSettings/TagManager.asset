@@ -17,6 +17,7 @@ TagManager:
   - ZycieUP
   - Ziemia
   - CameraUP
+  - CameraZbyWysoko
   layers:
   - Default
   - TransparentFX

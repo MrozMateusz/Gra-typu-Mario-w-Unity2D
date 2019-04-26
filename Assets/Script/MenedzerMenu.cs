@@ -290,11 +290,13 @@ public class MenedzerMenu : MonoBehaviour
     public void ZaGraczemKam()
     {
         KameraPodazanie.zmiana_sp_por_kam = true;
+        PlayerPrefsX.SetBool("Kam", KameraPodazanie.zmiana_sp_por_kam);
     }
 
     public void StatycznaKam()
     {
         KameraPodazanie.zmiana_sp_por_kam = false;
+        PlayerPrefsX.SetBool("Kam", KameraPodazanie.zmiana_sp_por_kam);
     }
 
     public void GrajOdNowa()

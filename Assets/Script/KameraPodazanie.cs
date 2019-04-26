@@ -16,7 +16,7 @@ public class KameraPodazanie : MonoBehaviour
     private void Start()
     {
         Gracz = GameObject.FindWithTag("Player");
-        zmiana_sp_por_kam = false;
+        zmiana_sp_por_kam = PlayerPrefsX.GetBool("Kam");
         zm_y = transform.position.y;
     }
     // Update is called once per frame
