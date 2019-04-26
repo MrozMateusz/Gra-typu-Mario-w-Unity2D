@@ -147,7 +147,18 @@ public class Spaw : MonoBehaviour
             {
                 if (zebrane == false)
                 {
-                    punktacja.wynik++;
+                    if (PlayerPrefs.GetInt("PoziomTr") == 1)
+                    {
+                        punktacja.wynik++;
+                    }
+                    else if (PlayerPrefs.GetInt("PoziomTr") == 2)
+                    {
+                       punktacja.wynik = punktacja.wynik + 2;
+                    }
+                    else if (PlayerPrefs.GetInt("PoziomTr") == 3)
+                    {
+                        punktacja.wynik = punktacja.wynik + 3;
+                    }
                     zebrane = true;
                     dzwiekMon.Play();
                 }

@@ -15,6 +15,7 @@ public class MenedzerMenu : MonoBehaviour
     public GameObject helpMenu;
     public Canvas helpMenuCanvas;
     public GameObject zapis_opcji;
+    public GameObject wybor_trud;
     Scene scena;
     private Double lastTimeKeyPressed;
     public GameObject menu_wyj;
@@ -33,6 +34,8 @@ public class MenedzerMenu : MonoBehaviour
     public static bool wyczyszczony = false;
     public bool blokada = true;
     public static bool gra_od_nowa = false;
+    public int Poziom_tr;
+    public static bool czas_stop = false;
 
     int[] TablicaWynikow = new int[10];
     string[] TablicaWynikowNick = new string[10];
@@ -84,18 +87,53 @@ public class MenedzerMenu : MonoBehaviour
         
     }
     
-    public void WejdzDoGry(string Plansza1)
+    public void WybierzPoziomTrud()
     {
+        wybor_trud.SetActive(true);
+        WDG.SetActive(false);
+   
+    }
 
+    public void P1(string Plansza1)
+    {
         SceneManager.LoadScene(Plansza1);
         PlayerPrefs.SetFloat("PozX", -10.77f);
         PlayerPrefs.SetFloat("PozY", -2.86f);
         PlayerPrefs.SetFloat("PozZ", 13.6342f);
         PlayerPrefs.SetInt("Wynik", 0);
         PlayerPrefs.SetInt("ILZY", 3);
+        PlayerPrefs.SetInt("PoziomTr", 1);
         PlayerPrefs.GetString("NicK");
-            rozp.interactable = true;
-   
+    }
+
+    public void P2(string Plansza1)
+    {
+        SceneManager.LoadScene(Plansza1);
+        PlayerPrefs.SetFloat("PozX", -10.77f);
+        PlayerPrefs.SetFloat("PozY", -2.86f);
+        PlayerPrefs.SetFloat("PozZ", 13.6342f);
+        PlayerPrefs.SetInt("Wynik", 0);
+        PlayerPrefs.SetInt("ILZY", 2);
+        PlayerPrefs.SetInt("PoziomTr", 2);
+        PlayerPrefs.GetString("NicK");
+    }
+
+    public void P3(string Plansza1)
+    {
+        SceneManager.LoadScene(Plansza1);
+        PlayerPrefs.SetFloat("PozX", -10.77f);
+        PlayerPrefs.SetFloat("PozY", -2.86f);
+        PlayerPrefs.SetFloat("PozZ", 13.6342f);
+        PlayerPrefs.SetInt("Wynik", 0);
+        PlayerPrefs.SetInt("ILZY", 4);
+        PlayerPrefs.SetInt("PoziomTr", 3);
+        PlayerPrefs.GetString("NicK");
+    }
+
+    public void PowrZWybPoziTrud()
+    {
+        wybor_trud.SetActive(false);
+        menuInGame.SetActive(true);
     }
 
     public void WrocDoMenu()
@@ -127,6 +165,7 @@ public class MenedzerMenu : MonoBehaviour
                 PlayerPrefs.SetInt("Wynik", zapisG.wynik);
                 PlayerPrefs.SetInt("ILZY", zapisG.ilZycie);
                 PlayerPrefs.SetString("NicK", zapisG.nick);
+                PlayerPrefs.SetInt("PoziomTr", zapisG.poziomTr);
                 PlayerPrefs.Save();
 
                 zapisGry.Close();
@@ -215,6 +254,7 @@ public class MenedzerMenu : MonoBehaviour
         zapis.wynik = PlayerPrefs.GetInt("Wynik");
         zapis.ilZycie = PlayerPrefs.GetInt("ILZY");
         zapis.nick = PlayerPrefs.GetString("NicK");
+        zapis.poziomTr = PlayerPrefs.GetInt("PoziomTr");
 
         Forma.Serialize(zapisGry, zapis);
         zapisGry.Close();
@@ -251,7 +291,18 @@ public class MenedzerMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         kon.SetActive(false);
-        Zycie.zycie = 3;
+        if (PlayerPrefs.GetInt("PoziomTr") == 1)
+        {
+            Zycie.zycie = 3;
+        }
+        else if (PlayerPrefs.GetInt("PoziomTr") == 2)
+        {
+            Zycie.zycie = 2;
+        }
+        else if (PlayerPrefs.GetInt("PoziomTr") == 3)
+        {
+            Zycie.zycie = 4;
+        }
         punktacja.wynik = 0;
         CzasGry.minuty = 0.0f;
         CzasGry.sekundy = 0.0f;
@@ -376,24 +427,24 @@ public class MenedzerMenu : MonoBehaviour
                 menuInGameCanvas.enabled = !menuInGameCanvas.enabled;
                 if (menuInGameCanvas.enabled)
                 {
-                    Time.timeScale = 0;
                     Cursor.visible = enabled;
                 }
                 else
                 {
                     Cursor.visible = false;
-                    Time.timeScale = 1;
                 }
+                
             }
             helpMenuUpdate();
 
+
             if (helpPocz.activeSelf)
             {
-                Time.timeScale = 0.0f;
+                czas_stop = true;
             }
             else
             {
-                Time.timeScale = 1.0f;
+                czas_stop = false;
             }
 
         }
@@ -410,11 +461,6 @@ public class MenedzerMenu : MonoBehaviour
             }
 
             timer += Time.deltaTime;
-        
-        if (timer > 0.02f)
-        {
-            rozp.interactable = true;
-        }
 
             if (TablicaWynikow[0] == 0 || TablicaWynikowNick[0] == "")
             {
@@ -441,7 +487,6 @@ public class MenedzerMenu : MonoBehaviour
 
         if (blokada == true)
         {
-            timer = 0.0f;
             rozp.interactable = false;
         }
         else
@@ -482,7 +527,7 @@ public class MenedzerMenu : MonoBehaviour
         public string nick;
         public int wynik;
         public int ilZycie;
-        //public int poziomTr;
+        public int poziomTr;
     }
 
 }

@@ -13,7 +13,6 @@ public class EnemyScript : MonoBehaviour
     private Transform punktKoncowy;
 
     float predkosc = 3;
-   // private Animator Animacja;
     readonly string naz = "Menu";
     bool zmiana=true;
     static public bool zniszcz = false;
@@ -30,22 +29,27 @@ public class EnemyScript : MonoBehaviour
             {
                 Debug.Log("koniec przeciwników");
             }
+
+        if (PlayerPrefs.GetInt("PoziomTr") != 1)
+        {
+            predkosc = 5;
+        }
+        else
+        {
+            predkosc = 3;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
- 
-       
-            //player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            //punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
-
-
-            //punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
-        
-
-
+        if (PlayerPrefs.GetInt("PoziomTr") == 3)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            punktStartowy = GameObject.FindGameObjectWithTag("Start").GetComponent<Transform>();
+            punktKoncowy = GameObject.FindGameObjectWithTag("End").GetComponent<Transform>();
+        }
             scena = SceneManager.GetActiveScene();
 
             zniszcz = false;
@@ -55,25 +59,35 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
+            if (PlayerPrefs.GetInt("PoziomTr") != 3)
+            {
                 foreach (GameObject mg in gm)
                 {
-                
-                    ruch_przec();
+                   ruch_przec();
                 }
-                
+
             }
+            else
+            {
+                foreach (GameObject mg in gm)
+                {
+                    ruch_przec_P3();
+                }
+            }
+        }
         
     }
 
     void ruch_przec()
     {
+        if (move.zranienie == false)
+        {
         //(Vector2.Distance(this.transform.position, player.position) < 5) && (this.transform.position.x > punktStartowy.position.x) && (this.transform.position.x < punktKoncowy.position.x)
         /* if (isBetween(player, punktStartowy, punktKoncowy) && (isBetween(this.transform, punktStartowy, punktKoncowy))){ //podążanie przeciwników za playerem
              this.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, this.transform.position.y, this.transform.position.z), predkosc * Time.deltaTime);
          }
          else*/
-        if (move.zranienie == false)
-        {
+        
             if (zmiana == true)
                 {
                     rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
@@ -92,11 +106,43 @@ public class EnemyScript : MonoBehaviour
         {
             rig2d.velocity = new Vector2(0, rig2d.velocity.y);
         }
-       
 
     }
 
-    /* private bool isBetween(Transform gameObject, Transform positio1, Transform position2)
+    void ruch_przec_P3()
+    {
+        if (move.zranienie == false)
+        {
+            //(Vector2.Distance(this.transform.position, player.position) < 5) && (this.transform.position.x > punktStartowy.position.x) && (this.transform.position.x < punktKoncowy.position.x)
+            if (isBetween(player, punktStartowy, punktKoncowy) && (isBetween(this.transform, punktStartowy, punktKoncowy))) { //podążanie przeciwników za playerem
+                this.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, this.transform.position.y, this.transform.position.z), predkosc/2 * Time.deltaTime);
+            }
+            else
+            {
+
+                if (zmiana == true)
+                {
+                    rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
+                    this.transform.localScale = new Vector3(-0.5791352f, 0.567311f, 1f);
+
+                }
+                else
+                {
+                    rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
+                    this.transform.localScale = new Vector3(0.5791352f, 0.567311f, 1f);
+
+                }
+            }
+        }
+        else
+        {
+            rig2d.velocity = new Vector2(0, rig2d.velocity.y);
+        }
+
+    }
+
+
+    private bool isBetween(Transform gameObject, Transform positio1, Transform position2)
      {
          if((gameObject.transform.position.x < position2.position.x) && (gameObject.transform.position.x > positio1.position.x))
          {
@@ -104,7 +150,7 @@ public class EnemyScript : MonoBehaviour
          }
 
          return false;
-     }*/
+     }
 
     private void OnTriggerEnter2D(Collider2D kolizja)
     {
@@ -131,7 +177,18 @@ public class EnemyScript : MonoBehaviour
             {
                 Destroy(this.gameObject);
                 zniszcz = true;
-                punktacja.wynik += 1;
+                if (PlayerPrefs.GetInt("PoziomTr") == 1)
+                {
+                    punktacja.wynik++;
+                }
+                else if (PlayerPrefs.GetInt("PoziomTr") == 2)
+                {
+                    punktacja.wynik = punktacja.wynik + 2;
+                }
+                else if (PlayerPrefs.GetInt("PoziomTr") == 3)
+                {
+                    punktacja.wynik = punktacja.wynik + 3;
+                }
             }
 
 

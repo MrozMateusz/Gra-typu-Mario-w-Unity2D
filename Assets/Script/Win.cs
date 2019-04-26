@@ -33,6 +33,17 @@ public class Win : MonoBehaviour
 
         if (kon.activeSelf == true)
         {
+            //Time.timeScale = 0.0f;
+            MenedzerMenu.czas_stop = true;
+        }
+        else
+        {
+            //MenedzerMenu.czas_stop = false;
+            Time.timeScale = 1.0f;
+        }
+
+        if(MenedzerMenu.czas_stop == true)
+        {
             Time.timeScale = 0.0f;
         }
         else

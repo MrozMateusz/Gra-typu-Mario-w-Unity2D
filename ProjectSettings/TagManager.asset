@@ -16,6 +16,7 @@ TagManager:
   - Buff
   - ZycieUP
   - Ziemia
+  - CameraUP
   layers:
   - Default
   - TransparentFX

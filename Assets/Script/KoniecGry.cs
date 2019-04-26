@@ -8,6 +8,7 @@ public class KoniecGry : MonoBehaviour
     public Text wynikLicz;
     public Text czasLicz;
     public Text NickNapis;
+    public Text pozTrud;
 
     private int wynik;
     private string nick;
@@ -23,7 +24,18 @@ public class KoniecGry : MonoBehaviour
         czasLicz.text = CzasGry.CzasR;
         NickNapis.text = PlayerPrefs.GetString("NicK");
 
-
+        if (PlayerPrefs.GetInt("PoziomTr") == 1)
+        {
+            pozTrud.text = "Łatwy";
+        }
+        else if(PlayerPrefs.GetInt("PoziomTr") == 2)
+        {
+            pozTrud.text = "Średni";
+        }
+        else if (PlayerPrefs.GetInt("PoziomTr") == 3)
+        {
+            pozTrud.text = "Trudny";
+        }
 
         TablicaWynikow = PlayerPrefsX.GetIntArray("TablicaWynikow");
         TablicaWynikowNick = PlayerPrefsX.GetStringArray("TablicaWynikowNick");

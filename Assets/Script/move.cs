@@ -22,7 +22,7 @@ public class move : MonoBehaviour
     public AudioSource skokDz;
     public AudioSource dzwiekBuff;
     public AudioSource FallDz;
-    bool skoczyl = false;
+    public static bool skoczyl = false;
 
     // Start is called before the first frame update
     void Start()
@@ -84,13 +84,17 @@ public class move : MonoBehaviour
                 {
                     rig2.velocity = new Vector2(0, rig2.velocity.y);
                 }
-
-                if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
+                if (Czas_stop.blok_skok == false)
                 {
-                    rig2.velocity = new Vector2(rig2.velocity.x, skok);
-                    skokDz.Play();
-                    skoczyl = true;
-                    
+                    if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
+                    {
+                        rig2.velocity = new Vector2(rig2.velocity.x, skok);
+
+                        skokDz.Play();
+
+                        skoczyl = true;
+
+                    }
                 }
             }
             else
