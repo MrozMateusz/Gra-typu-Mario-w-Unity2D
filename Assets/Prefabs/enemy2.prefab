@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 5639139473515481436}
   - component: {fileID: 5639139473515481437}
   - component: {fileID: 5639139473515481434}
-  - component: {fileID: 6206601633482604656}
   m_Layer: 10
   m_Name: Version1_Walk_00
   m_TagString: Enemy
@@ -288,30 +287,4 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.4514085, y: 0.93204975}
-  m_EdgeRadius: 0
---- !u!61 &6206601633482604656
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5639139473515481408}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.15150392, y: 0.799967}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2.14}
-    newSize: {x: 2, y: 2.14}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.2300386, y: 0.22703493}
   m_EdgeRadius: 0

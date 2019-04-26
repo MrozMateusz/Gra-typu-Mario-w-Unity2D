@@ -287,6 +287,16 @@ public class MenedzerMenu : MonoBehaviour
         menuInGame.SetActive(false);
     }
 
+    public void ZaGraczemKam()
+    {
+        KameraPodazanie.zmiana_sp_por_kam = true;
+    }
+
+    public void StatycznaKam()
+    {
+        KameraPodazanie.zmiana_sp_por_kam = false;
+    }
+
     public void GrajOdNowa()
     {
         SceneManager.LoadScene(1);
@@ -454,11 +464,10 @@ public class MenedzerMenu : MonoBehaviour
             {
                 btkon.interactable = true;
             }
-
             else
             {
                 btkon.interactable = false;
-            }
+            } 
 
             timer += Time.deltaTime;
 

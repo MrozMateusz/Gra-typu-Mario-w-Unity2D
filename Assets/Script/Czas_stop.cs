@@ -10,6 +10,7 @@ public class Czas_stop : MonoBehaviour
     void Start()
     {
         menu_w_grze = GetComponent<Canvas>();
+
     }
 
     // Update is called once per frame
@@ -25,7 +26,6 @@ public class Czas_stop : MonoBehaviour
             Time.timeScale = 1.0f;
             blok_skok = false;
         }
-
 
     }
 }

@@ -30,13 +30,17 @@ public class EnemyScript : MonoBehaviour
                 Debug.Log("koniec przeciwników");
             }
 
-        if (PlayerPrefs.GetInt("PoziomTr") != 1)
+        if (PlayerPrefs.GetInt("PoziomTr") == 1)
+        {
+            predkosc = 3;
+        }
+        else if (PlayerPrefs.GetInt("PoziomTr") == 2)
         {
             predkosc = 5;
         }
-        else
+        else if (PlayerPrefs.GetInt("PoziomTr") == 3)
         {
-            predkosc = 3;
+            predkosc = 6.8f;
         }
     }
 
@@ -88,7 +92,7 @@ public class EnemyScript : MonoBehaviour
          }
          else*/
         
-            if (zmiana == true)
+                if (zmiana == true)
                 {
                     rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
                     this.transform.localScale = new Vector3(-0.5791352f, 0.567311f, 1f);
