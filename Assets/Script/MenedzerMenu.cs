@@ -330,6 +330,7 @@ public class MenedzerMenu : MonoBehaviour
         PlayerPrefsX.SetBool("FS",Screen.fullScreen);
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
 
+
         BinaryFormatter Form = new BinaryFormatter();
         FileStream zapisUst = File.Create(Application.persistentDataPath + "/UstawieniaDomyslne.d");
         Save ustawienia = new Save();
@@ -338,7 +339,7 @@ public class MenedzerMenu : MonoBehaviour
         ustawienia.szerEkranu = PlayerPrefs.GetInt("rozdzielczoscSzer");
         ustawienia.wysEkranu = PlayerPrefs.GetInt("rozdzielczoscWys");
         ustawienia.refRate = PlayerPrefs.GetInt("RefRat");
-        ustawienia.Glosnosc= PlayerPrefs.GetFloat("Glosnosc");
+        ustawienia.Glosnosc = PlayerPrefs.GetFloat("Glosnosc");
 
         Form.Serialize(zapisUst, ustawienia);
         zapisUst.Close();
@@ -351,7 +352,7 @@ public class MenedzerMenu : MonoBehaviour
     public void NieZapisuj()
     {
         Screen.SetResolution(PlayerPrefs.GetInt("rozdzielczoscSzer"), PlayerPrefs.GetInt("rozdzielczoscWys"), PlayerPrefsX.GetBool("FS"), PlayerPrefs.GetInt("RefRat"));
-        AudioListener.volume=PlayerPrefs.GetFloat("Glosnosc");
+        AudioListener.volume = PlayerPrefs.GetFloat("Glosnosc");
         zapis_opcji.SetActive(false);
         menuInGame.SetActive(true);
         op.SetActive(false);

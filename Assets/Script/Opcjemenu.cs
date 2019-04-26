@@ -11,6 +11,7 @@ public class Opcjemenu : MonoBehaviour
     public Toggle FullScreen;
     public Dropdown rozdzielczosc;
     public Slider glosnosc;
+    public Text rozText;
     private Resolution[] rozdzielczosci;
     private bool fs;
 
@@ -27,15 +28,15 @@ public class Opcjemenu : MonoBehaviour
         glosnosc.onValueChanged.AddListener(delegate { GlosnoscZmiana(); });
         FullScreen.onValueChanged.AddListener(delegate { FullScreenZmiana(); });
         rozdzielczosc.onValueChanged.AddListener(delegate { RozdzielczoscZmiana(); });
-
-
-
     }
 
     private void FixedUpdate()
     {
 
         rozdzielczosc.options.Clear();
+        
+        rozText.text = Screen.currentResolution.ToString();
+
         for (int i = 0; i < rozdzielczosci.Length; i++)
         {
 
@@ -59,7 +60,6 @@ public class Opcjemenu : MonoBehaviour
             FullScreen.isOn = false;
         }
         glosnosc.value = AudioListener.volume;
-
 
     }
     public void FullScreenZmiana()
@@ -92,5 +92,4 @@ public class Opcjemenu : MonoBehaviour
         { 
             return roz.width + "x" + roz.height + " x "+ roz.refreshRate + "H" + "z";
         }
-
 }

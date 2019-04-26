@@ -71,16 +71,16 @@ public class move : MonoBehaviour
                 if (Win.czas_zatrzym == false)
                 {
                     DotykaZiemii = Physics2D.OverlapCircle(ziemia.position, rozmiarZiemii, LayerZiemii);
-                    float Horizontal = Input.GetAxis("Horizontal");
+                    //float Horizontal = Input.GetAxis("Horizontal");
 
-                    if (Horizontal > 0f)
+                    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                     {
-                        rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
+                        rig2.velocity = new Vector2(1 * predkosc, rig2.velocity.y);
                         transform.localScale = new Vector2(0.8372915f, 0.6437907f);
                     }
-                    else if (Horizontal < 0f)
+                    else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                     {
-                        rig2.velocity = new Vector2(Horizontal * predkosc, rig2.velocity.y);
+                        rig2.velocity = new Vector2(-1 * predkosc, rig2.velocity.y);
                         transform.localScale = new Vector2(-0.8372915f, 0.6437907f);
                     }
                     else
