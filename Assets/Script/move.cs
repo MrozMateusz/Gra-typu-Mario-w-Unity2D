@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class move : MonoBehaviour
 {
+    KeyCode Up, UpAlt, UpAlt2, Left, LeftAlt, Right, RightAlt;
     private Rigidbody2D rig2;
     float skok = 5;
     float predkosc = 3;
@@ -31,6 +32,20 @@ public class move : MonoBehaviour
         Animacja = GetComponent<Animator>();
         rig2 = GetComponent<Rigidbody2D>();
 
+        if (PlayerPrefs.HasKey("Up"))
+            Up = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Up"));
+        if (PlayerPrefs.HasKey("UpAlt"))
+            UpAlt = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("UpAlt"));
+        if (PlayerPrefs.HasKey("UpAlt2"))
+            UpAlt2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("UpAlt2"));
+        if (PlayerPrefs.HasKey("Left"))
+            Left = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Left"));
+        if (PlayerPrefs.HasKey("Left"))
+            LeftAlt = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftAlt"));
+        if (PlayerPrefs.HasKey("Right"))
+            Right = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Right"));
+        if (PlayerPrefs.HasKey("Right"))
+            RightAlt = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightAlt"));
     }
 
     // Update is called once per frame
@@ -73,12 +88,12 @@ public class move : MonoBehaviour
                     DotykaZiemii = Physics2D.OverlapCircle(ziemia.position, rozmiarZiemii, LayerZiemii);
                     //float Horizontal = Input.GetAxis("Horizontal");
 
-                    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+                    if (Input.GetKey(Right) || Input.GetKey(RightAlt))
                     {
                         rig2.velocity = new Vector2(1 * predkosc, rig2.velocity.y);
                         transform.localScale = new Vector2(0.8372915f, 0.6437907f);
                     }
-                    else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+                    else if (Input.GetKey(Left) || Input.GetKey(LeftAlt))
                     {
                         rig2.velocity = new Vector2(-1 * predkosc, rig2.velocity.y);
                         transform.localScale = new Vector2(-0.8372915f, 0.6437907f);
@@ -89,7 +104,7 @@ public class move : MonoBehaviour
                     }
                     if (Czas_stop.blok_skok == false)
                     {
-                        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && DotykaZiemii)
+                        if ((Input.GetKeyDown(Up) || Input.GetKeyDown(UpAlt) || Input.GetKeyDown(UpAlt2)) && DotykaZiemii)
                         {
                             rig2.velocity = new Vector2(rig2.velocity.x, skok);
 

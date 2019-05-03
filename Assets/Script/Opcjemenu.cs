@@ -25,23 +25,14 @@ public class Opcjemenu : MonoBehaviour
 
         glosnosc.value = AudioListener.volume;
 
-        glosnosc.onValueChanged.AddListener(delegate { GlosnoscZmiana(); });
-        FullScreen.onValueChanged.AddListener(delegate { FullScreenZmiana(); });
-        rozdzielczosc.onValueChanged.AddListener(delegate { RozdzielczoscZmiana(); });
-    }
+        rozdzielczosc.ClearOptions();
 
-    private void FixedUpdate()
-    {
-
-        rozdzielczosc.options.Clear();
-        
         rozText.text = Screen.currentResolution.ToString();
 
         for (int i = 0; i < rozdzielczosci.Length; i++)
         {
-
-                rozdzielczosc.options.Add(new Dropdown.OptionData());
-                rozdzielczosc.options[i].text = RoztoString(rozdzielczosci[i]);
+            rozdzielczosc.options.Add(new Dropdown.OptionData());
+            rozdzielczosc.options[i].text = RoztoString(rozdzielczosci[i]);
 
             if (RoztoString(rozdzielczosci[i]) == (Screen.width + "x" + Screen.height + "x" + rozdzielczosci[i].refreshRate))
             {
@@ -49,6 +40,20 @@ public class Opcjemenu : MonoBehaviour
             }
         }
         rozdzielczosc.RefreshShownValue();
+
+
+        glosnosc.onValueChanged.AddListener(delegate { GlosnoscZmiana(); });
+        FullScreen.onValueChanged.AddListener(delegate { FullScreenZmiana(); });
+        rozdzielczosc.onValueChanged.AddListener(delegate { RozdzielczoscZmiana(); });
+    }
+
+    private void Update()
+    {
+        rozText.text = Screen.currentResolution.ToString();
+    }
+
+    private void FixedUpdate()
+    {
         fs = Screen.fullScreen;
 
         if (fs == true)

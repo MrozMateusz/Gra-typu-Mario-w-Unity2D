@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2463186772235958408}
   - component: {fileID: 2463186772235958411}
+  - component: {fileID: 784762922688310712}
   m_Layer: 0
   m_Name: ButtoneMenedzer
   m_TagString: Untagged
@@ -43,3 +44,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12bb134908f28741811c5fd9abe88af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuInGameCanvas: {fileID: 0}
+  op: {fileID: 0}
+  TW: {fileID: 0}
+  WDG: {fileID: 0}
+  menuInGame: {fileID: 0}
+  helpMenu: {fileID: 0}
+  helpMenuCanvas: {fileID: 0}
+  zapis_opcji: {fileID: 0}
+  wybor_trud: {fileID: 0}
+  menu_wyj: {fileID: 0}
+  input: {fileID: 0}
+  kon: {fileID: 0}
+  helpPocz: {fileID: 0}
+  btkon: {fileID: 0}
+  rozp: {fileID: 0}
+  czysc: {fileID: 0}
+  btTaWy: {fileID: 0}
+  blokada: 1
+  Poziom_tr: 0
+--- !u!114 &784762922688310712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2463186772235958410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75834281e2942f4fa4f07624fe8d656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skok1: {fileID: 0}
+  skok2: {fileID: 0}
+  skok3: {fileID: 0}
+  left4: {fileID: 0}
+  left5: {fileID: 0}
+  right6: {fileID: 0}
+  right7: {fileID: 0}
