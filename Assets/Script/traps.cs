@@ -5,7 +5,6 @@ using UnityEngine;
 public class traps : MonoBehaviour
 {
     private Animator bearTrapAnimator;
-    private GameObject bearTrapGameObject;
     private bool startBearTrap = false;
     float timer = 0.0f;
     bool reopenBearTrap;
@@ -14,8 +13,7 @@ public class traps : MonoBehaviour
 
     void Start()
     {
-        bearTrapGameObject = GameObject.Find("bearTrap");
-        bearTrapAnimator = bearTrapGameObject.GetComponent<Animator>();
+        bearTrapAnimator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D Collider)

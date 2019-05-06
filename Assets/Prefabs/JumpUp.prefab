@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1457851346754587919}
   - component: {fileID: 1457851346754587916}
   - component: {fileID: 3518397433981287929}
+  - component: {fileID: 2092129254600960558}
   m_Layer: 0
   m_Name: JumpUp
   m_TagString: Buff
@@ -130,5 +131,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3305d43865afc24191230546c8c531d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2092129254600960558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457851346754587915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1216fd9ab5a70419ae0f88dd0883d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

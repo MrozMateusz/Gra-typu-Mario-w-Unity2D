@@ -40,11 +40,11 @@ public class move : MonoBehaviour
             UpAlt2 = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("UpAlt2"));
         if (PlayerPrefs.HasKey("Left"))
             Left = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Left"));
-        if (PlayerPrefs.HasKey("Left"))
+        if (PlayerPrefs.HasKey("LeftAlt"))
             LeftAlt = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftAlt"));
         if (PlayerPrefs.HasKey("Right"))
             Right = (KeyCode)System.Enum.Parse(typeof(KeyCode),PlayerPrefs.GetString("Right"));
-        if (PlayerPrefs.HasKey("Right"))
+        if (PlayerPrefs.HasKey("RightAlt"))
             RightAlt = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightAlt"));
     }
 

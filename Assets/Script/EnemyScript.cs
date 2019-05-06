@@ -86,22 +86,26 @@ public class EnemyScript : MonoBehaviour
     {
         if (move.zranienie == false)
         {
-        //(Vector2.Distance(this.transform.position, player.position) < 5) && (this.transform.position.x > punktStartowy.position.x) && (this.transform.position.x < punktKoncowy.position.x)
-        /* if (isBetween(player, punktStartowy, punktKoncowy) && (isBetween(this.transform, punktStartowy, punktKoncowy))){ //podążanie przeciwników za playerem
-             this.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, this.transform.position.y, this.transform.position.z), predkosc * Time.deltaTime);
-         }
-         else*/
-        
-                if (zmiana == true)
+            //(Vector2.Distance(this.transform.position, player.position) < 5) && (this.transform.position.x > punktStartowy.position.x) && (this.transform.position.x < punktKoncowy.position.x)
+            /* if (isBetween(player, punktStartowy, punktKoncowy) && (isBetween(this.transform, punktStartowy, punktKoncowy))){ //podążanie przeciwników za playerem
+                 this.transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, this.transform.position.y, this.transform.position.z), predkosc * Time.deltaTime);
+             }
+             else*/
+            float x = this.transform.localScale.x;
+
+            if (zmiana == true)
                 {
+                    
+                    if(x>0) x = -x;
                     rig2d.velocity = new Vector2(predkosc, rig2d.velocity.y);
-                    this.transform.localScale = new Vector3(-0.5791352f, 0.567311f, 1f);
+                    this.transform.localScale = new Vector3(x, this.transform.localScale.y, 1f);
 
                 }
                 else
                 {
-                    rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
-                    this.transform.localScale = new Vector3(0.5791352f, 0.567311f, 1f);
+                if (x < 0) x = -x;
+                rig2d.velocity = new Vector2(-predkosc, -rig2d.velocity.y);
+                    this.transform.localScale = new Vector3(x, this.transform.localScale.y, 1f);
 
                 }
  

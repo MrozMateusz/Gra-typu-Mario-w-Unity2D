@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2806212715798440442}
   - component: {fileID: 2806212715798440443}
   - component: {fileID: 2806212715798440447}
+  - component: {fileID: 6260595581807811157}
   m_Layer: 10
   m_Name: HealthUp
   m_TagString: ZycieUP
@@ -130,5 +131,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9f3a57e0680ca040a540f0e5c3e4c1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6260595581807811157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2806212715798440436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1216fd9ab5a70419ae0f88dd0883d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

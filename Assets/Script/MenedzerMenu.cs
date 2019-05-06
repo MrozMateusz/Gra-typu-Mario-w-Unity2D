@@ -17,6 +17,7 @@ public class MenedzerMenu : MonoBehaviour
     public Canvas helpMenuCanvas;
     public GameObject zapis_opcji;
     public GameObject wybor_trud;
+    public GameObject helpERROR;
     Scene scena;
     private Double lastTimeKeyPressed;
     public GameObject menu_wyj;
@@ -66,8 +67,22 @@ public class MenedzerMenu : MonoBehaviour
 
     public void NowaGra()
     {
-        WDG.SetActive(true);
+        if (PlayerPrefs.HasKey("Up"))
+        {
+            WDG.SetActive(true);
         menuInGame.SetActive(false);
+        }
+        else
+        {
+            helpERROR.SetActive(true);
+            menuInGame.SetActive(false);
+        }
+    }
+
+    public void OK()
+    {
+        helpERROR.SetActive(false);
+        menuInGame.SetActive(true);
     }
 
     public void wpisz()
@@ -192,6 +207,7 @@ public class MenedzerMenu : MonoBehaviour
     public void Wyjscie()
     {
         menu_wyj.SetActive(true);
+        menuInGame.SetActive(false);
     }
 
     public void TablicaWynikowM()
@@ -280,6 +296,7 @@ public class MenedzerMenu : MonoBehaviour
     public void Nie()
     {
         menu_wyj.SetActive(false);
+        menuInGame.SetActive(true);
     }
 
     public void Pomoc()
@@ -371,8 +388,16 @@ public class MenedzerMenu : MonoBehaviour
 
     public void PomocMG()
     {
-        menuInGame.SetActive(false);
+        if (PlayerPrefs.HasKey("Up"))
+        {
+            menuInGame.SetActive(false);
         helpMenu.SetActive(true);
+        }
+        else
+        {
+            helpERROR.SetActive(true);
+            menuInGame.SetActive(false);
+        }
     }
 
     public void Czysc()
@@ -403,16 +428,21 @@ public class MenedzerMenu : MonoBehaviour
         {
 
             helpMenu.SetActive(true);
-            helpMenuCanvas.enabled = true;
+            Time.timeScale = 0;
 
 
         }
         if (helpMenu.activeSelf && Input.GetKey(KeyCode.Escape) && canBePressed())
         {
             helpMenu.SetActive(false);
-            helpMenuCanvas.enabled = false;
             Time.timeScale = 1;
         }
+    }
+
+    public void WyjdzZPom()
+    {
+        helpMenu.SetActive(false);
+        menuInGame.SetActive(true);
     }
 
     public void PowrotZPomocy()

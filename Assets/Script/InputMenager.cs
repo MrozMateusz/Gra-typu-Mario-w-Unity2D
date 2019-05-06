@@ -21,12 +21,20 @@ public class InputMenager : MonoBehaviour
 
     Scene scena;
 
+    public Slider naz1;
+    public Toggle naz2;
+    public Dropdown naz3;
+    public Button naz4, naz5, naz6, naz7, naz8, naz9, naz10, naz11;
+
+    public GameObject error;
+    public GameObject ZapisanieOpcji;
+    public static bool errorActiv;
     // Start is called before the first frame update
     void Start()
     {
         klawisze = new Dictionary<string, KeyCode>();
         scena = SceneManager.GetActiveScene();
-       
+        errorActiv = false;
 
         if (scena.name == "Menu") {
 
@@ -70,21 +78,67 @@ public class InputMenager : MonoBehaviour
         }
     }
 
-   
+    private void Update()
+    {
+        if(errorActiv == true || ZapisanieOpcji.activeSelf)
+        {
+            naz1.interactable = false;
+            naz2.interactable = false;
+            naz3.interactable = false;
+            naz4.interactable = false;
+            naz5.interactable = false;
+            naz6.interactable = false;
+            naz7.interactable = false;
+            naz8.interactable = false;
+            naz9.interactable = false;
+            naz10.interactable = false;
+            naz11.interactable = false;
+        }
+        else
+        {
+            naz1.interactable = true;
+            naz2.interactable = true;
+            naz3.interactable = true;
+            naz4.interactable = true;
+            naz5.interactable = true;
+            naz6.interactable = true;
+            naz7.interactable = true;
+            naz8.interactable = true;
+            naz9.interactable = true;
+            naz10.interactable = true;
+            naz11.interactable = true;
+        }
+    }
+
 
     private void OnGUI()
     {
         if(wybranyklawisz != null)
         {
             Event e = Event.current;
-            
-            if (e.isKey)
+            KeyCode wejscie = e.keyCode;
+
+        if(e.isKey && wejscie != KeyCode.Escape && wejscie != KeyCode.F1 && wejscie != klawisze["Up"] && wejscie != klawisze["UpAlt"] && wejscie != klawisze["UpAlt2"] && wejscie != klawisze["Left"] && wejscie != klawisze["LeftAlt"] && wejscie != klawisze["Right"] && wejscie != klawisze["RightAlt"])
             {
                 klawisze[wybranyklawisz.name] = e.keyCode;
+
                 wybranyklawisz.transform.GetChild(0).GetComponent<Text>().text = e.keyCode.ToString();
                 wybranyklawisz.GetComponent<Image>().color = Color.white;
                 wybranyklawisz = null;
+                return;
             }
+        if(e.isKey && wejscie == KeyCode.Escape || wejscie == KeyCode.F1 || wejscie == klawisze["Up"] || wejscie == klawisze["UpAlt"] || wejscie == klawisze["UpAlt2"] || wejscie == klawisze["Left"] || wejscie == klawisze["LeftAlt"] || wejscie == klawisze["Right"] || wejscie == klawisze["RightAlt"])
+            {
+                wybranyklawisz.transform.GetChild(0).GetComponent<Text>().text = klawisze[wybranyklawisz.name].ToString();
+                wybranyklawisz.GetComponent<Image>().color = Color.white;
+                wybranyklawisz = null;
+
+                
+                error.SetActive(true);
+                errorActiv = true;
+                return;
+            }
+
         }
     }
 
@@ -120,6 +174,37 @@ public class InputMenager : MonoBehaviour
         PlayerPrefs.SetString("Right", "D"); 
         PlayerPrefs.SetString("RightAlt", "RightArrow");
 
+        klawisze.Clear();
+
+        if (!klawisze.ContainsKey("Up"))
+        {
+            klawisze.Add("Up", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Up", "W")));
+        }
+        if (!klawisze.ContainsKey("UpAlt"))
+        {
+            klawisze.Add("UpAlt", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("UpAlt", "Space")));
+        }
+        if (!klawisze.ContainsKey("UpAlt2"))
+        {
+            klawisze.Add("UpAlt2", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("UpAlt2", "UpArrow")));
+        }
+        if (!klawisze.ContainsKey("Left"))
+        {
+            klawisze.Add("Left", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Left", "A")));
+        }
+        if (!klawisze.ContainsKey("LeftAlt"))
+        {
+            klawisze.Add("LeftAlt", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftAlt", "LeftArrow")));
+        }
+        if (!klawisze.ContainsKey("Right"))
+        {
+            klawisze.Add("Right", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right", "D")));
+        }
+        if (!klawisze.ContainsKey("RightAlt"))
+        {
+            klawisze.Add("RightAlt", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightAlt", "RightArrow")));
+        }
+
         skok1.text = "W";
         skok2.text = "Space";
         skok3.text = "UpArrow";
@@ -128,6 +213,12 @@ public class InputMenager : MonoBehaviour
         right6.text = "D";
         right7.text = "RightArrow";
 
+    }
+
+    public void WyjdzZError()
+    {
+        error.SetActive(false);
+        errorActiv = false;
     }
 
 }
