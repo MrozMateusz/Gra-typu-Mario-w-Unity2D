@@ -16,6 +16,8 @@ public class InputMenager : MonoBehaviour
     public Text left5;
     public Text right6;
     public Text right7;
+    public Text ESC;
+    public Text F;
 
     private GameObject wybranyklawisz;
 
@@ -24,7 +26,7 @@ public class InputMenager : MonoBehaviour
     public Slider naz1;
     public Toggle naz2;
     public Dropdown naz3;
-    public Button naz4, naz5, naz6, naz7, naz8, naz9, naz10, naz11;
+    public Button naz4, naz5, naz6, naz7, naz8, naz9, naz10, naz11, naz12, naz13, naz14;
 
     public GameObject error;
     public GameObject ZapisanieOpcji;
@@ -66,14 +68,25 @@ public class InputMenager : MonoBehaviour
                 {
                     klawisze.Add("RightAlt", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightAlt", "RightArrow")));
                 }
-            
-        skok1.text = klawisze["Up"].ToString();
+                if (!klawisze.ContainsKey("ESC"))
+                {
+                    klawisze.Add("ESC", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ESC", "Escape")));
+                }
+                if (!klawisze.ContainsKey("F1"))
+                {
+                    klawisze.Add("F1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("F1", "F1")));
+                }
+
+
+            skok1.text = klawisze["Up"].ToString();
         skok2.text = klawisze["UpAlt"].ToString();
         skok3.text = klawisze["UpAlt2"].ToString();
         left4.text = klawisze["Left"].ToString();
         left5.text = klawisze["LeftAlt"].ToString();
         right6.text = klawisze["Right"].ToString();
         right7.text = klawisze["RightAlt"].ToString();
+        ESC.text = klawisze["ESC"].ToString();
+        F.text = klawisze["F1"].ToString();
  
         }
     }
@@ -93,6 +106,9 @@ public class InputMenager : MonoBehaviour
             naz9.interactable = false;
             naz10.interactable = false;
             naz11.interactable = false;
+            naz12.interactable = false;
+            naz13.interactable = false;
+            naz14.interactable = false;
         }
         else
         {
@@ -107,6 +123,9 @@ public class InputMenager : MonoBehaviour
             naz9.interactable = true;
             naz10.interactable = true;
             naz11.interactable = true;
+            naz12.interactable = true;
+            naz13.interactable = true;
+            naz14.interactable = true;
         }
     }
 
@@ -118,7 +137,7 @@ public class InputMenager : MonoBehaviour
             Event e = Event.current;
             KeyCode wejscie = e.keyCode;
 
-        if(e.isKey && wejscie != KeyCode.Escape && wejscie != KeyCode.F1 && wejscie != klawisze["Up"] && wejscie != klawisze["UpAlt"] && wejscie != klawisze["UpAlt2"] && wejscie != klawisze["Left"] && wejscie != klawisze["LeftAlt"] && wejscie != klawisze["Right"] && wejscie != klawisze["RightAlt"])
+        if(e.isKey && wejscie != klawisze["ESC"] && wejscie != klawisze["F1"] && wejscie != klawisze["Up"] && wejscie != klawisze["UpAlt"] && wejscie != klawisze["UpAlt2"] && wejscie != klawisze["Left"] && wejscie != klawisze["LeftAlt"] && wejscie != klawisze["Right"] && wejscie != klawisze["RightAlt"])
             {
                 klawisze[wybranyklawisz.name] = e.keyCode;
 
@@ -127,7 +146,7 @@ public class InputMenager : MonoBehaviour
                 wybranyklawisz = null;
                 return;
             }
-        if(e.isKey && wejscie == KeyCode.Escape || wejscie == KeyCode.F1 || wejscie == klawisze["Up"] || wejscie == klawisze["UpAlt"] || wejscie == klawisze["UpAlt2"] || wejscie == klawisze["Left"] || wejscie == klawisze["LeftAlt"] || wejscie == klawisze["Right"] || wejscie == klawisze["RightAlt"])
+        if(e.isKey && wejscie == klawisze["ESC"] || wejscie == klawisze["F1"] || wejscie == klawisze["Up"] || wejscie == klawisze["UpAlt"] || wejscie == klawisze["UpAlt2"] || wejscie == klawisze["Left"] || wejscie == klawisze["LeftAlt"] || wejscie == klawisze["Right"] || wejscie == klawisze["RightAlt"])
             {
                 wybranyklawisz.transform.GetChild(0).GetComponent<Text>().text = klawisze[wybranyklawisz.name].ToString();
                 wybranyklawisz.GetComponent<Image>().color = Color.white;
@@ -173,6 +192,8 @@ public class InputMenager : MonoBehaviour
         PlayerPrefs.SetString("LeftAlt", "LeftArrow"); 
         PlayerPrefs.SetString("Right", "D"); 
         PlayerPrefs.SetString("RightAlt", "RightArrow");
+        PlayerPrefs.SetString("ESC", "Escape");
+        PlayerPrefs.SetString("F1", "F1");
 
         klawisze.Clear();
 
@@ -204,6 +225,14 @@ public class InputMenager : MonoBehaviour
         {
             klawisze.Add("RightAlt", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightAlt", "RightArrow")));
         }
+        if (!klawisze.ContainsKey("ESC"))
+        {
+            klawisze.Add("ESC", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ESC", "Escape")));
+        }
+        if (!klawisze.ContainsKey("F1"))
+        {
+            klawisze.Add("F1", (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("F1", "F1")));
+        }
 
         skok1.text = "W";
         skok2.text = "Space";
@@ -212,6 +241,8 @@ public class InputMenager : MonoBehaviour
         left5.text = "LeftArrow";
         right6.text = "D";
         right7.text = "RightArrow";
+        ESC.text = "Escape";
+        F.text = "F1";
 
     }
 

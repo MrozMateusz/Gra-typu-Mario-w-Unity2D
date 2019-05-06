@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class OdsPom : MonoBehaviour
 {
-    KeyCode UpW, UpAltW, UpAlt2W, LeftW, LeftAltW, RightW, RightAltW;
+    KeyCode UpW, UpAltW, UpAlt2W, LeftW, LeftAltW, RightW, RightAltW, ESCW, F1W;
 
     public Text skok1;
     public Text skok2;
@@ -15,6 +15,10 @@ public class OdsPom : MonoBehaviour
     public Text left5;
     public Text right6;
     public Text right7;
+    public Text ESC;
+    public Text F1;
+    public Text ESCPocz;
+    public Text F1Pocz;
 
     Scene scena;
     // Start is called before the first frame update
@@ -41,8 +45,12 @@ public class OdsPom : MonoBehaviour
                 RightW = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Right"));
             if (PlayerPrefs.HasKey("RightAlt"))
                 RightAltW = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightAlt"));
+            if (PlayerPrefs.HasKey("ESC"))
+                ESCW = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ESC"));
+            if (PlayerPrefs.HasKey("F1"))
+                F1W = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("F1"));
 
-            
+
             skok1.text = UpW.ToString();
             skok2.text = UpAltW.ToString();
             skok3.text = UpAlt2W.ToString();
@@ -50,5 +58,12 @@ public class OdsPom : MonoBehaviour
             left5.text = LeftAltW.ToString();
             right6.text = RightW.ToString();
             right7.text = RightAltW.ToString();
+            ESC.text = ESCW.ToString();
+            F1.text = F1W.ToString();
+        if (scena.name != "Menu")
+        {
+            ESCPocz.text = ESCW.ToString() + ".";
+            F1Pocz.text = F1W.ToString() + ".";
+        }
    } 
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 public class MenedzerMenu : MonoBehaviour
 {
+    KeyCode ESCW, F1W;
     public Canvas menuInGameCanvas;
     public GameObject op;
     public GameObject TW;
@@ -47,6 +48,7 @@ public class MenedzerMenu : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = enabled;
         PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
         PlayerPrefs.SetFloat("Glosnosc", AudioListener.volume);
@@ -424,7 +426,7 @@ public class MenedzerMenu : MonoBehaviour
 
     void helpMenuUpdate()
     {
-        if (Input.GetKey(KeyCode.F1) && canBePressed() && !helpPocz.activeSelf)
+        if (Input.GetKey(F1W) && canBePressed() && !helpPocz.activeSelf && !menuInGameCanvas.enabled)
         {
 
             helpMenu.SetActive(true);
@@ -432,7 +434,7 @@ public class MenedzerMenu : MonoBehaviour
 
 
         }
-        if (helpMenu.activeSelf && Input.GetKey(KeyCode.Escape) && canBePressed())
+        if (helpMenu.activeSelf && Input.GetKey(ESCW) && canBePressed())
         {
             helpMenu.SetActive(false);
             Time.timeScale = 1;
@@ -458,14 +460,28 @@ public class MenedzerMenu : MonoBehaviour
         TablicaWynikow = PlayerPrefsX.GetIntArray("TablicaWynikow");
         TablicaWynikowNick = PlayerPrefsX.GetStringArray("TablicaWynikowNick");
 
+        if (PlayerPrefs.HasKey("ESC"))
+            ESCW = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ESC"));
+        if (PlayerPrefs.HasKey("F1"))
+            F1W = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("F1"));
+
         if (scena.name != naz)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && helpPocz.activeSelf)
+            if (helpMenu.activeSelf || menuInGameCanvas.enabled)
+            {
+                Cursor.visible = enabled;
+            }
+            else
+            {
+                Cursor.visible = false;
+            }
+
+            if (Input.GetKeyDown(ESCW) && helpPocz.activeSelf)
             {
                 helpPocz.SetActive(false);
 
             }
-                if (Input.GetKeyDown(KeyCode.Escape) && !helpMenu.activeSelf && !helpPocz.activeSelf)
+                if (Input.GetKeyDown(ESCW) && !helpMenu.activeSelf && !helpPocz.activeSelf)
                {
                 menuInGame.SetActive(true);
                 menuInGameCanvas.enabled = !menuInGameCanvas.enabled;
