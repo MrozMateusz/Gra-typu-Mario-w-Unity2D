@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2829217642173927448}
   - component: {fileID: 4749248119156125467}
   - component: {fileID: 7321260422495247680}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: moneta
   m_TagString: Moneta
   m_Icon: {fileID: 0}

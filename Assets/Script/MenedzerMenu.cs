@@ -31,6 +31,8 @@ public class MenedzerMenu : MonoBehaviour
     public Button rozp;
     public Button czysc;
     public Button btTaWy;
+    public Button btPozTrSr;
+    public Button btPozTrTR;
     string nick;
     float timer = 0.0f;
     bool gotowy_do_czyszcz = false;
@@ -39,6 +41,8 @@ public class MenedzerMenu : MonoBehaviour
     public static bool gra_od_nowa = false;
     public int Poziom_tr;
     public static bool czas_stop = false;
+    public static bool klik_konty = false;
+
 
     int[] TablicaWynikow = new int[10];
     string[] TablicaWynikowNick = new string[10];
@@ -48,6 +52,12 @@ public class MenedzerMenu : MonoBehaviour
 
     private void Awake()
     {
+
+        if (!PlayerPrefs.HasKey("ostPozTr"))
+        {
+            PlayerPrefs.SetInt("ostPozTr", 0);
+        }
+
         Cursor.visible = enabled;
         PlayerPrefs.SetInt("rozdzielczoscSzer",Screen.width);
         PlayerPrefs.SetInt("rozdzielczoscWys", Screen.height);
@@ -79,6 +89,11 @@ public class MenedzerMenu : MonoBehaviour
             helpERROR.SetActive(true);
             menuInGame.SetActive(false);
         }
+    }
+
+    public void Graj_od_Nast_Poz_trud()
+    {
+        SceneManager.LoadScene(4);
     }
 
     public void OK()
@@ -170,7 +185,8 @@ public class MenedzerMenu : MonoBehaviour
     public void Kontynuuj()
     {
             int OstatniaPlansza;
-
+        if (PlayerPrefs.HasKey("Up"))
+        {
             if (File.Exists(Application.persistentDataPath + "/ZapisanaGra.d"))
             {
                 BinaryFormatter Forma = new BinaryFormatter();
@@ -190,6 +206,8 @@ public class MenedzerMenu : MonoBehaviour
 
             Time.timeScale = 1;
 
+                klik_konty = true;
+
             if (OstatniaPlansza != 0)
                 {
                     SceneManager.LoadScene(OstatniaPlansza);
@@ -203,7 +221,12 @@ public class MenedzerMenu : MonoBehaviour
             {
                 return;
             }
-    
+        }
+        else
+        {
+            helpERROR.SetActive(true);
+            menuInGame.SetActive(false);
+        }
     }
 
     public void Wyjscie()
@@ -426,7 +449,7 @@ public class MenedzerMenu : MonoBehaviour
 
     void helpMenuUpdate()
     {
-        if (Input.GetKey(F1W) && canBePressed() && !helpPocz.activeSelf && !menuInGameCanvas.enabled)
+        if (Input.GetKey(F1W) && canBePressed() && !helpPocz.activeSelf && !menuInGameCanvas.enabled && !kon.activeSelf)
         {
 
             helpMenu.SetActive(true);
@@ -467,7 +490,7 @@ public class MenedzerMenu : MonoBehaviour
 
         if (scena.name != naz)
         {
-            if (helpMenu.activeSelf || menuInGameCanvas.enabled)
+            if (helpMenu.activeSelf || menuInGameCanvas.enabled || kon.activeSelf)
             {
                 Cursor.visible = enabled;
             }
@@ -481,7 +504,7 @@ public class MenedzerMenu : MonoBehaviour
                 helpPocz.SetActive(false);
 
             }
-                if (Input.GetKeyDown(ESCW) && !helpMenu.activeSelf && !helpPocz.activeSelf)
+                if (Input.GetKeyDown(ESCW) && !helpMenu.activeSelf && !helpPocz.activeSelf && !kon.activeSelf)
                {
                 menuInGame.SetActive(true);
                 menuInGameCanvas.enabled = !menuInGameCanvas.enabled;
@@ -506,7 +529,24 @@ public class MenedzerMenu : MonoBehaviour
             else
             {
                 btkon.interactable = false;
-            } 
+            }
+
+            if (PlayerPrefs.GetInt("ostPozTr") == 0)
+            {
+                btPozTrSr.interactable = false;
+                btPozTrTR.interactable = false;
+            }
+            else if(PlayerPrefs.GetInt("ostPozTr") == 1)
+            {
+                btPozTrSr.interactable = true;
+                btPozTrTR.interactable = false;
+            }
+            else if(PlayerPrefs.GetInt("ostPozTr") == 2)
+            {
+                btPozTrSr.interactable = true;
+                btPozTrTR.interactable = true;
+            }
+
 
             timer += Time.deltaTime;
 

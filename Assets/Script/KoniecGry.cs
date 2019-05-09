@@ -9,6 +9,7 @@ public class KoniecGry : MonoBehaviour
     public Text czasLicz;
     public Text NickNapis;
     public Text pozTrud;
+    public Button btNowyPozTr;
 
     private int wynik;
     private string nick;
@@ -19,6 +20,25 @@ public class KoniecGry : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0.0f;
+
+        if(PlayerPrefs.GetInt("PoziomTr") == 1)
+        {
+            PlayerPrefs.SetInt("PoziomTrOstUkon", 1);
+        }
+        else if(PlayerPrefs.GetInt("PoziomTr") == 2)
+        {
+            PlayerPrefs.SetInt("PoziomTrOstUkon", 2);
+        }
+
+        if (PlayerPrefs.GetInt("MozKonWyg") == 0 && PlayerPrefs.GetInt("PoziomTr") != 3)
+        {
+            btNowyPozTr.interactable = true;
+        }
+        else
+        {
+            btNowyPozTr.interactable = false;
+        }
+
 
         wynikLicz.text = punktacja.wynik.ToString();
         czasLicz.text = CzasGry.CzasR;

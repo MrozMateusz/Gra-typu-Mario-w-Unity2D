@@ -28,14 +28,23 @@ public class Spaw : MonoBehaviour
 
     float czasZmianyKamery = 0.0f;
 
-    void Awake()
+    void Start()
     {
-           
-           if(PlayerPrefs.GetFloat("PozX")!=0 && PlayerPrefs.GetFloat("PozY") != 0 && PlayerPrefs.GetFloat("PozZ") != 0)
+        if (!PlayerPrefs.HasKey("MozKonWyg"))
+        {
+            PlayerPrefs.SetInt("MozKonWyg", 1);
+        }
+        if (!PlayerPrefs.HasKey("MozKon"))
+        {
+            PlayerPrefs.SetInt("MozKon", 1);
+        }
+
+        if (PlayerPrefs.GetFloat("PozX")!=0 && PlayerPrefs.GetFloat("PozY") != 0 && PlayerPrefs.GetFloat("PozZ") != 0 && MenedzerMenu.klik_konty == true)
                 {
-                    float PX = PlayerPrefs.GetFloat("PozX");
+                    
                     miejsceRespawnu = new Vector3(PlayerPrefs.GetFloat("PozX"), PlayerPrefs.GetFloat("PozY"), PlayerPrefs.GetFloat("PozZ"));
-                    this.transform.position = miejsceRespawnu;  
+                    this.transform.position = miejsceRespawnu;
+            MenedzerMenu.klik_konty = false;
                 }
                 else {
         respawnPlace = GameObject.FindGameObjectWithTag("Respawn");
@@ -116,6 +125,7 @@ public class Spaw : MonoBehaviour
                 zranienie = 1;
                 uderzenie = 1;
                 Zycie.zycie -= 1;
+                Zycie.blokada = false;
             }
         }
 
@@ -156,7 +166,7 @@ public class Spaw : MonoBehaviour
 
             if (Player.tag == "Checkpoint")
             {
-               
+
                     miejsceRespawnu = Player.transform.position;
 
                     scena = SceneManager.GetActiveScene().buildIndex;
@@ -194,6 +204,7 @@ public class Spaw : MonoBehaviour
                     {
                         punktacja.wynik = punktacja.wynik + 3;
                     }
+                    Zycie.blokada = false;
                     zebrane = true;
                     dzwiekMon.Play();
                 }

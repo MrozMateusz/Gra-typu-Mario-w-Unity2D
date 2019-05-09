@@ -9,12 +9,12 @@ public class Zycie : MonoBehaviour
     public GameObject kon;
     public int mozKon = 1;
     public Text text;
+    public static bool blokada = false;
 
     // Start is called before the first frame update
     void Start()
     {
         zycie = PlayerPrefs.GetInt("ILZY");
-       // this.GetComponent<Text>();
 
     }
 
@@ -24,7 +24,34 @@ public class Zycie : MonoBehaviour
         text.text = zycie.ToString();
 
         PlayerPrefs.SetInt("ILZY", zycie);
-        
+
+        if (punktacja.wynik % 10 == 0 && blokada == false && punktacja.wynik != 0 && PlayerPrefs.GetInt("PoziomTr") != 3)
+        {
+            zycie += 1;
+            blokada = true;
+        }
+
+        if (PlayerPrefs.GetInt("PoziomTr") == 3)
+        {
+
+            if((punktacja.wynik - 2) % 10 == 0 && blokada == false && punktacja.wynik != 0)
+            {
+                zycie += 1;
+                blokada = true;
+            }
+            if ((punktacja.wynik - 1) % 10 == 0 && blokada == false && punktacja.wynik != 0)
+            {
+                zycie += 1;
+                blokada = true;
+            }
+            if (punktacja.wynik % 10 == 0 && blokada == false && punktacja.wynik != 0)
+            {
+                zycie += 1;
+                blokada = true;
+            }
+
+        }
+
         if (zycie < 1)
         {
             kon.SetActive(true);

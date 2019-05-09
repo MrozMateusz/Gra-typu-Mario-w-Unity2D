@@ -25,10 +25,16 @@ public class Win : MonoBehaviour
         {
             x++;
         }
+        if (MenedzerMenu.gra_od_nowa == true)
+        {
+            x = 2;
+        }
     }
 
     void Update()
     {
+        
+
         timerZ = Time.deltaTime;
 
         scena = SceneManager.GetActiveScene();
@@ -71,6 +77,17 @@ public class Win : MonoBehaviour
                 x = 2;
 
                 PlayerPrefs.SetInt("MozKonWyg", mozKonWyg);
+
+                if (PlayerPrefs.GetInt("ostPozTr") != 2) {
+                    if (PlayerPrefs.GetInt("PoziomTr") == 1)
+                    {
+                        PlayerPrefs.SetInt("ostPozTr", 1);
+                    }
+                    else if (PlayerPrefs.GetInt("PoziomTr") == 2)
+                    {
+                        PlayerPrefs.SetInt("ostPozTr", 2);
+                    }
+                }
             }
             
         }
